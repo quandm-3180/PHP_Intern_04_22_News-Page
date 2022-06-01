@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'status',
     ];
 
     /**
@@ -41,4 +43,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeIsAdmin($query)
+    {
+        return $query->where('role_id', config('custom.user_roles.admin'));
+    }
+
+    public function scopeIsWriter($query)
+    {
+        return $query->where('role_id', config('custom.user_roles.writer'));
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
