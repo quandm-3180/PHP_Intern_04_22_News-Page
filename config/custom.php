@@ -4,7 +4,7 @@ return [
     'user_roles' => [
         'user' => 1,
         'writer' => 2,
-        'admin' => 3
+        'admin' => 3,
     ],
     'user_status' => [
         'inactive' => 0,
