@@ -1,0 +1,22 @@
+{
+  "name": "PHP_Intern_04_22_News-Page",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Quan Troy 19 <doquan285lg@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/quantroy19/PHP_Intern_04_22_News-Page",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "light-bootstrap-dashboard": "git@github.com:creativetimofficial/light-bootstrap-dashboard.git",
+    "css": "https://fonts.googleapis.com/css?family=Montserrat:400,700,200",
+    "font-awesome.min": "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+  }
+}
