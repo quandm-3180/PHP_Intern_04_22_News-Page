@@ -16,7 +16,8 @@
   ],
   "dependencies": {
     "light-bootstrap-dashboard": "git@github.com:creativetimofficial/light-bootstrap-dashboard.git",
-    "css": "https://fonts.googleapis.com/css?family=Montserrat:400,700,200",
-    "font-awesome.min": "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+    "css": "https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i",
+    "font-awesome.min": "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css",
+    "templete-news365": "git@github.com:quantroy19/templete-news365.git"
   }
 }
