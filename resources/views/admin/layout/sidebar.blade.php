@@ -18,6 +18,12 @@
                     <p>{{ __('Post') }}</p>
                 </a>
             </li>
+            <li>
+                <a class="nav-link" href="{{ url('/admin/category') }}">
+                    <i class="nc-icon nc-bullet-list-67"></i>
+                    <p>{{ __('category') }}</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

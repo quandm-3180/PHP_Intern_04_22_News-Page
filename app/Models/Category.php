@@ -18,4 +18,9 @@ class Category extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public function getStatusAttribute($value)
+    {
+        return ($value == config('custom.category_status.show')) ? __('Show') : __('Hidden');
+    }
 }

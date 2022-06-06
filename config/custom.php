@@ -17,4 +17,8 @@ return [
         'approved' => 2,
         'rejected' => 3,
     ],
+    'category_status' => [
+        'hidden' => '0',
+        'show' => '1',
+    ],
 ];
