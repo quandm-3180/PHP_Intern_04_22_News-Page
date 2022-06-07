@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('change-language/{language}', [LanguageController::class, 'changeLanguage'])->name('change-language');
 
 Auth::routes();
 

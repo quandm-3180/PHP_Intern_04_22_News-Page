@@ -24,7 +24,7 @@
         <div class="top_header hidden-xs">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4 col-md-3">
+                    <div class="col-sm-4 col-md-2">
                         <div class="top_header_menu_wrap">
                             <ul class="top-header-menu">
                                 <li><a href="{{ url('register') }}">{{ __('REGISTER') }}</a></li>
@@ -37,8 +37,22 @@
                         <div class="newsticker-inner">
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-2">
+                    <div class="col-sm-12 col-md-3">
                         <div class="top_header_icon">
+                            <!-- Localization  button -->
+                            <div class="btn-group">
+                                <button type=" button" class="btn btn-sm btn-info dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ route('change-language', ['en']) }}">{{ __('English') }}</a>
+                                    </li>
+                                    <li> <a href="{{ route('change-language', ['vi']) }}">{{ __('Tiếng Việt') }}</a>
+                                    </li>
+                                </ul>
+                            </div>
                             <span class="top_header_icon_wrap">
                                 <a target="_blank" href="#" title="Twitter"><i class="fa fa-twitter"></i></a>
                             </span>
