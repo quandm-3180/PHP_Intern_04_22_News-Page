@@ -28,6 +28,19 @@
                         <span class="no-icon"> {{ Auth::user()->name }}</span>
                     </a>
                 </li>
+                <!-- Localization  button -->
+                <div class="dropdown m-auto">
+                    <a href="#" class="btn btn-sm btn-info" data-toggle="dropdown">
+                        <i class="fa fa-globe" aria-hidden="true"></i>
+                        <i class="fa fa-caret-down"> </i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <a class="dropdown-item"
+                            href="{{ route('change-language', ['en']) }}">{{ __('English') }}</a>
+                        <a class="dropdown-item"
+                            href="{{ route('change-language', ['vi']) }}">{{ __('Tiếng Việt') }}</a>
+                    </ul>
+                </div>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}">
                         <input class="btn" form="logout-form" type="submit" value="{{ __('Log out') }}">
