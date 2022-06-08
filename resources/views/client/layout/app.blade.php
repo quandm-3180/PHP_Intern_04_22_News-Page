@@ -92,22 +92,8 @@
                 </div>
             </div>
         </div>
-        <!-- navbar -->
-        <div class="container hidden-xs">
-            <nav class="navbar">
 
-                @include('client.layout.navbar')
-                <!-- navbar-collapse -->
-            </nav>
-        </div>
-    </header>
-
-    <section>
-        <div class="container">
-
-            @yield('content')
-        </div>
-    </section>
+    @yield('content')
 
     <!-- footer Area
         ============================================ -->

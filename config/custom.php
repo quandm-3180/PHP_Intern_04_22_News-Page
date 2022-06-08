@@ -12,10 +12,10 @@ return [
     ],
     'post_popular' => 1,
     'post_status' => [
-        'pending' => 0,
-        'cancel' => 1,
-        'approved' => 2,
-        'rejected' => 3,
+        'pending' => '0',
+        'cancel' => '1',
+        'approved' => '2',
+        'rejected' => '3',
     ],
     'category_status' => [
         'hidden' => '0',
@@ -29,4 +29,5 @@ return [
         'no' => 0,
         'yes' => 1,
     ],
+    'post_propular_top_num' => 2,
 ];

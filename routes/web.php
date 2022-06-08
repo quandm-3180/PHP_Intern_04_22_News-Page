@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
+use App\Http\Controllers\Client\PostController as ClientPostController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
@@ -19,14 +20,17 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('client.home');
 });
 
 Route::get('change-language/{language}', [LanguageController::class, 'changeLanguage'])->name('change-language');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::name('client.')
+    ->group(function () {
+        Route::get('/home', [ClientPostController::class, 'homepage'])->name('home');
+    });
 
 Route::prefix('admin')
     ->name('admin.')
