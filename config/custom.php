@@ -25,4 +25,8 @@ return [
         'hidden' => 'Hidden',
         'show' => 'Show',
     ],
+    'post_popular' => [
+        'no' => 0,
+        'yes' => 1,
+    ],
 ];

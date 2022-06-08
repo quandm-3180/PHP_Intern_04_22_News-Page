@@ -44,5 +44,18 @@
     "Show in client": "Hiện ở trang chủ",
     "Close": "Đóng",
     "Submit": "Lưu",
-    "Edit Category": "Sửa danh mục"
+    "Edit Category": "Sửa danh mục",
+    "List Post": "Danh sách bài viết",
+    "Title": "Tiêu đề",
+    "Image": "Hình ảnh",
+    "Category": "Danh mục",
+    "Writer": "Người viết",
+    "Pending": "Đợi duyệt",
+    "Cancel": "Huỷ",
+    "Approved": "Chấp nhận",
+    "Rejected": "Từ chối",
+    "Detail": "Chi tiết",
+    "Add Post": "Thêm bài viết",
+    "Content": "Nội dung",
+    "Popular news": "Bài viết nổi bật"
 }

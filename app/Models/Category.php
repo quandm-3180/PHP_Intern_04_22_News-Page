@@ -23,4 +23,9 @@ class Category extends Model
     {
         return ($value == config('custom.category_status.show')) ? __('Show') : __('Hidden');
     }
+
+    public function scopeIsShow($query)
+    {
+        return $query->where('status', config('custom.category_status.show'));
+    }
 }

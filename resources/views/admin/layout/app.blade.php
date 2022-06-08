@@ -21,6 +21,7 @@
     <link
         href="{{ asset('bower_components/light-bootstrap-dashboard/assets/css/light-bootstrap-dashboard.css?v=2.0.0') }} "
         rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('bower_components/summernote/dist/summernote-bs4.min.css') }}">
 </head>
 
 <body>
