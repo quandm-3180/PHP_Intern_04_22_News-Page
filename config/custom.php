@@ -21,4 +21,8 @@ return [
         'hidden' => '0',
         'show' => '1',
     ],
+    'category_status_text' => [
+        'hidden' => 'Hidden',
+        'show' => 'Show',
+    ],
 ];
