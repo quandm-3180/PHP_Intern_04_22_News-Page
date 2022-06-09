@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
@@ -31,4 +32,5 @@ Route::prefix('admin')
     ->name('admin.')
     ->group(function () {
         Route::resource('category', AdminCategoryController::class);
+        Route::resource('post', AdminPostController::class);
     });

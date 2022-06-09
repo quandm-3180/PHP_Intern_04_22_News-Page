@@ -10,6 +10,38 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'content',
+        'category_id',
+        'user_id',
+        'is_popular',
+    ];
+
+    public function getStatusAttribute($value)
+    {
+        $postStatus = null;
+        switch ($value) {
+            case config('custom.post_status.pending'):
+                $postStatus = __('Pending');
+                break;
+            case config('custom.post_status.cancel'):
+                $postStatus = __('Cancel');
+                break;
+            case config('custom.post_status.approved'):
+                $postStatus = __('Approved');
+                break;
+            case config('custom.post_status.rejected'):
+                $postStatus = __('Rejected');
+                break;
+            default:
+                $postStatus = __('Pending');
+                break;
+        }
+
+        return $postStatus;
+    }
+
     public function scopeIsApproved($query)
     {
         return $query->where('status', config('custom.post_status.approved'));

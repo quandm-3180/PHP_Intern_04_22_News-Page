@@ -43,5 +43,18 @@
     "Show in client": "Show in client",
     "Close": "Close",
     "Submit": "Submit",
-    "Edit Category": "Edit Category"
+    "Edit Category": "Edit Category",
+    "List Post": "List Post",
+    "Title": "Title",
+    "Image": "Image",
+    "Category": "Category",
+    "Writer": "Writer",
+    "Pending": "Pending",
+    "Cancel": "Cancel",
+    "Approved": "Approved",
+    "Rejected": "Rejected",
+    "Detail": "Detail",
+    "Add Post": "Add Post",
+    "Content": "Content",
+    "Popular news": "Popular news"
 }
