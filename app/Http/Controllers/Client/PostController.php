@@ -16,4 +16,13 @@ class PostController extends Controller
 
         return view('client.home.index', compact('categories', 'popularPosts'));
     }
+
+    public function postDetails($categorySlug, $postSlug)
+    {
+        $categories = Category::isShow()->get();
+        $post = Post::isApproved()->isPopular()
+            ->where('slug', $postSlug)->first();
+
+        return view('client.post.post-details', compact('categories', 'post'));
+    }
 }
