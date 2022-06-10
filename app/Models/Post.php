@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -42,6 +43,11 @@ class Post extends Model
         return $postStatus;
     }
 
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('M, d Y');
+    }
+
     public function scopeIsApproved($query)
     {
         return $query->where('status', config('custom.post_status.approved'));
@@ -49,7 +55,7 @@ class Post extends Model
 
     public function scopeIsPopular($query)
     {
-        return $query->where('is_popular', config('custom.post_popular'));
+        return $query->where('is_popular', config('custom.post_popular.yes'));
     }
 
     public function user()
