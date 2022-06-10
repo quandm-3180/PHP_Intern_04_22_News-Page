@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\StoreRequest;
+use App\Http\Requests\Post\UpdateRequest;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Post;
@@ -71,7 +72,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categorys = Category::isShow()->get();
+        $post = Post::findOrFail($id);
+
+        return view('admin.post.edit', compact('categorys', 'post'));
     }
 
     /**
@@ -81,9 +85,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $post = Post::findOrFail($id);
+        $post->status = config('custom.post_status.pending');
+        $post->is_popular = ($request->is_popular == config('custom.post_popular.yes')
+            ? config('custom.post_popular.yes') : config('custom.post_popular.no'));
+        $post->update($data);
+        $this->updateImage($request, $post->images[0]->id);
+
+        return redirect()->route('admin.post.index');
     }
 
     /**
@@ -108,6 +120,19 @@ class PostController extends Controller
             $imagePost->image = $filename;
             $imagePost->post_id = $post_id;
             $imagePost->save();
+        }
+    }
+
+    public function updateImage($request, $image_id)
+    {
+        $imagePost = Image::findOrFail($image_id);
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $filename = date('YmdHis') . $file->getClientOriginalName();
+            $file->move(public_path('image'), $filename);
+
+            $imagePost->image = $filename;
+            $imagePost->update();
         }
     }
 }
