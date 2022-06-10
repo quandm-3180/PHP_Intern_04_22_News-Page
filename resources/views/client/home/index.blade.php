@@ -31,14 +31,17 @@
                             <div class="col-sm-6 col-padding">
                                 <div class="post-wrapper post-grid-6 wow fadeIn" data-wow-duration="2s">
                                     <div class="post-thumb img-zoom-in">
-                                        <a href="">
+                                        <a
+                                            href="{{ route('client.post-details', ['categorySlug' => $post->category->slug, 'postSlug' => $post->slug]) }}">
                                             <img class="entry-thumb-top"
                                                 src="{{ asset('image/' . $post->images[0]->image) }}" alt="">
                                         </a>
                                     </div>
                                     <div class="post-info">
                                         <span class="color-3">{{ $post->category->name }} </span>
-                                        <h3 class="post-title post-title-size"><a href="" rel="bookmark">
+                                        <h3 class="post-title post-title-size"><a
+                                                href="{{ route('client.post-details', ['categorySlug' => $post->category->slug, 'postSlug' => $post->slug]) }}"
+                                                rel="bookmark">
                                                 {{ $post->name }}</a></h3>
                                         <div class="post-editor-date">
                                             <!-- post date -->
@@ -46,7 +49,9 @@
                                                 <i class="pe-7s-clock"></i>
                                                 {{ $post->created_at }}
                                             </div>
-                                            <a class="readmore pull-right" href="#"><i class="pe-7s-angle-right"></i></a>
+                                            <a class="readmore pull-right"
+                                                href="{{ route('client.post-details', ['categorySlug' => $post->category->slug, 'postSlug' => $post->slug]) }}"><i
+                                                    class="pe-7s-angle-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -61,21 +66,25 @@
                                 <div class="item">
                                     <div class="post-wrapper post-grid-8 wow fadeIn" data-wow-duration="2s">
                                         <div class="post-thumb img-zoom-in">
-                                            <a href="">
+                                            <a
+                                                href="{{ route('client.post-details', ['categorySlug' => $post->category->slug, 'postSlug' => $post->slug]) }}">
                                                 <img class="entry-thumb-bottom"
                                                     src="{{ asset('image/' . $post->images[0]->image) }}" alt="">
                                             </a>
                                         </div>
                                         <div class="post-info">
                                             <span class="color-5">{{ $post->category->name }}</span>
-                                            <h3 class="post-title post-title-size"><a href=""
+                                            <h3 class="post-title post-title-size"><a
+                                                    href="{{ route('client.post-details', ['categorySlug' => $post->category->slug, 'postSlug' => $post->slug]) }}"
                                                     rel="bookmark">{{ $post->name }}</a></h3>
                                             <div class="post-editor-date">
                                                 <!-- post date -->
                                                 <div class="post-date">
                                                     <i class="pe-7s-clock"></i> {{ $post->created_at }}
                                                 </div>
-                                                <a class="readmore pull-right" href=""><i class="pe-7s-angle-right"></i></a>
+                                                <a class="readmore pull-right"
+                                                    href="{{ route('client.post-details', ['categorySlug' => $post->category->slug, 'postSlug' => $post->slug]) }}"><i
+                                                        class="pe-7s-angle-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
