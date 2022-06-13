@@ -9,12 +9,13 @@
         <nav class="navbar">
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('home') }}" class="category01">{{ __('HOME') }}</a>
+                    <li><a href="{{ route('client.home') }}" class="category01">{{ __('HOME') }}</a>
                     </li>
                     @foreach ($categories as $category)
-                        <li><a href="#" class="category03">{{ __("$category->name") }}</a></li>
+                        <li><a href="{{ route('client.post-by-category', $category->slug) }}"
+                                class="category03">{{ $category->name }}</a></li>
                     @endforeach
-                    <li><a href="{{ url('contact') }}" class="category08">{{ __('CONTACT') }}</a> </li>
+                    <li><a href="#" class="category08">{{ __('CONTACT') }}</a> </li>
                 </ul>
             </div>
             <!-- navbar-collapse -->
