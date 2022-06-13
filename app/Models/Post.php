@@ -17,6 +17,7 @@ class Post extends Model
         'category_id',
         'user_id',
         'is_popular',
+        'short_description',
     ];
 
     public function getStatusAttribute($value)
