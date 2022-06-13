@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png"
         href="{{ asset('bower_components/light-bootstrap-dashboard/assets/img/favicon.ico') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title> @yield('title', 'News 365') </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
@@ -22,6 +23,7 @@
         href="{{ asset('bower_components/light-bootstrap-dashboard/assets/css/light-bootstrap-dashboard.css?v=2.0.0') }} "
         rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('bower_components/summernote/dist/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bower_components/toastr/toastr.min.css') }}">
 </head>
 
 <body>

@@ -135,4 +135,18 @@ class PostController extends Controller
             $imagePost->update();
         }
     }
+
+    public function postStatus()
+    {
+        $posts = Post::with('images', 'category', 'user')->get();
+
+        return view('admin.post-status.index', compact('posts'));
+    }
+
+    public function changePostStatus($id, $postStatus)
+    {
+        $post = Post::findOrFail($id);
+        $post->status = $postStatus;
+        $post->update();
+    }
 }

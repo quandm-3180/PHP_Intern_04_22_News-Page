@@ -13,13 +13,19 @@
         </div>
         <ul class="nav">
             <li>
-                <a class="nav-link" href="{{ url('/admin/post') }}">
+                <a class="nav-link" href="{{ route('admin.post.index') }}">
                     <i class="nc-icon nc-paper-2"></i>
                     <p>{{ __('Post') }}</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="{{ url('/admin/category') }}">
+                <a class="nav-link" href="{{ route('admin.post.post-status') }}">
+                    <i class="nc-icon nc-notes"></i>
+                    <p>{{ __('Manage post status') }}</p>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.category.index') }}">
                     <i class="nc-icon nc-bullet-list-67"></i>
                     <p>{{ __('category') }}</p>
                 </a>
