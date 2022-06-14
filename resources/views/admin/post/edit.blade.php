@@ -1,11 +1,11 @@
 @extends('admin.layout.app')
 @section('title')
-    {{ __('Edit Post') }}
+    {{ __('edit_post') }}
 @endsection
 
 @section('content')
     <div class="card p-4">
-        <h4 class="mb-4">{{ __('Edit Post') }}</h4>
+        <h4 class="mb-4">{{ __('edit_post') }}</h4>
         <form action="{{ route('admin.post.update', $post->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('put')
@@ -24,6 +24,10 @@
                 <label for="name">{{ __('Title') }}</label>
                 <input class="form-control @error('name') is-invalid @enderror" id="name" type="text"
                     value="{{ $post->name }}" name="name">
+            </div>
+            <div class="form-group">
+                <label for="shortdescription">{{ __('short_description') }}</label>
+                <textarea class="form-control h-100" name="short_description" id="shortdescription">{{ $post->short_description }}</textarea>
             </div>
             <div class="form-group">
                 <label for="summernote">{{ __('Content') }}</label>
