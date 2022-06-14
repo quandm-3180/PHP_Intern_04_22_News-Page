@@ -21,7 +21,7 @@
             <li>
                 <a class="nav-link" href="{{ route('admin.post.post-status') }}">
                     <i class="nc-icon nc-notes"></i>
-                    <p>{{ __('Manage post status') }}</p>
+                    <p>{{ __('post_status') }}</p>
                 </a>
             </li>
             <li>

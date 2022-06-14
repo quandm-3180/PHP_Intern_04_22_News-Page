@@ -138,7 +138,8 @@ class PostController extends Controller
 
     public function postStatus()
     {
-        $posts = Post::with('images', 'category', 'user')->get();
+        $posts = Post::with('images', 'category', 'user')
+            ->orderBy('created_at', 'desc')->paginate(config('custom.per_page'));
 
         return view('admin.post-status.index', compact('posts'));
     }
@@ -148,5 +149,17 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->status = $postStatus;
         $post->update();
+
+        if (!$post) {
+            return response()->json([
+                'code' => 400,
+                'message' => __('messages.something-wrong')
+            ]);
+        }
+
+        return response()->json([
+            'code' => 200,
+            'message' => __('messages.update-success')
+        ]);
     }
 }
