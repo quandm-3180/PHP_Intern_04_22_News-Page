@@ -30,4 +30,5 @@ return [
         'yes' => 1,
     ],
     'post_propular_top_num' => 2,
+    'per_page' => 10,
 ];

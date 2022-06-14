@@ -30,6 +30,7 @@ Auth::routes();
 Route::name('client.')
     ->group(function () {
         Route::get('/home', [ClientPostController::class, 'homepage'])->name('home');
+        Route::get('/category/{slug}', [ClientPostController::class, 'getPostbyCategory'])->name('post-by-category');
         Route::get('/category/{categorySlug}/post/{postSlug}', [ClientPostController::class, 'postDetails'])
             ->name('post-details');
     });
