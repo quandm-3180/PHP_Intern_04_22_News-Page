@@ -31,4 +31,11 @@ return [
     ],
     'post_propular_top_num' => 2,
     'per_page' => 10,
+    'recent_post_num' => 6,
+    'recent_post_by_category_num' => 4,
+    'category_text' => [
+        'travel' => 1,
+        'food' => 2,
+        'fashion' => 6,
+    ],
 ];

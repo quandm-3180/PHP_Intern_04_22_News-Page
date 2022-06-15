@@ -16,5 +16,6 @@ mix.js('resources/js/app.js', 'public/js')
     .sourceMaps();
 
 //custom
+mix.sass('resources/sass/custom.scss', 'public/css');
 mix.js('resources/js/summernote.js', 'public/js');
 mix.js('resources/js/changepoststatus.js', 'public/js');

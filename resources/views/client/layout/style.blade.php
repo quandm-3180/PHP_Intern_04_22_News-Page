@@ -25,3 +25,4 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/templete-news365/css/flaticon.css') }}" />
 <!-- custom css -->
 <link rel="stylesheet" href="{{ asset('bower_components/templete-news365/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
