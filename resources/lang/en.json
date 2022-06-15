@@ -64,5 +64,6 @@
     "short_description": "Short description",
     "edit_post": "Edit post",
     "change_status": "Change status",
-    "post_status": "Post status"
+    "post_status": "Post status",
+    "recent_news": "Recent news"
 }

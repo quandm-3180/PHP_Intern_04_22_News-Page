@@ -13,8 +13,31 @@ class PostController extends Controller
     {
         $categories = Category::isShow()->get();
         $popularPosts = Post::with('images', 'category')->isApproved()->isPopular()->get();
+        $recentPosts = Post::with('images', 'category')->isApproved()->orderBy('created_at', 'desc')
+            ->limit(config('custom.recent_post_num'))->get();
+        $recentPostofTravle = Post::with('images', 'category')
+            ->where('category_id', config('custom.category_text.travel'))
+            ->isApproved()->orderBy('created_at', 'desc')
+            ->limit(config('custom.recent_post_by_category_num'))->get();
 
-        return view('client.home.index', compact('categories', 'popularPosts'));
+        $recentPostofFood = Post::with('images', 'category')
+            ->where('category_id', config('custom.category_text.food'))
+            ->isApproved()->orderBy('created_at', 'desc')
+            ->limit(config('custom.recent_post_by_category_num'))->get();
+
+        $recentPostofFashion = Post::with('images', 'category')
+            ->where('category_id', config('custom.category_text.fashion'))
+            ->isApproved()->orderBy('created_at', 'desc')
+            ->limit(config('custom.recent_post_by_category_num'))->get();
+
+        return view('client.home.index', compact(
+            'categories',
+            'popularPosts',
+            'recentPosts',
+            'recentPostofTravle',
+            'recentPostofFood',
+            'recentPostofFashion',
+        ));
     }
 
     public function postDetails($categorySlug, $postSlug)
