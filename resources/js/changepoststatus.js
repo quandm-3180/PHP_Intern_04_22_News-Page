@@ -1,16 +1,22 @@
-$('#postStatusApproved, #postStatusRejected').click(function (e) {
-    let id = $(this).attr('data');
-    let postStatus = $(this).attr('postStatus');
+$('#postStatusApproved, #postStatusRejected, #postStatusPending, #postStatusCancel').click(function (e) {
+    let changeStatusURL = $(this).attr('changeStatusURL');
     $.ajax({
-        url: `/admin/change-post-status/${id}/${postStatus}`,
+        url: changeStatusURL,
         type: "post",
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
-            setTimeout(() => {
-                location.reload();
-            }, 1000);
+            if (response.code === 200) {
+                toastr.success(response.message),
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+            };
+
+            if (response.code === 400) {
+                toastr.warning(response.message);
+            };
         }
     })
 })

@@ -45,17 +45,33 @@
                                     <th>
                                         <div class="dropdown">
                                             <a href="#" class="btn btn-sm btn-warning" data-toggle="dropdown">
-                                                {{ __('Change Status') }}
+                                                {{ __('change_status') }}
                                                 <i class="fa fa-caret-down"> </i>
                                             </a>
                                             <ul class="dropdown-menu mt-1">
                                                 @if (Auth::user()->role_id == config('custom.user_roles.admin'))
                                                     <a class="dropdown-item" id="postStatusApproved"
-                                                        postStatus="{{ config('custom.post_status.approved') }}"
-                                                        data="{{ $post->id }}">{{ __('Approved') }}</a>
+                                                        changeStatusURL={{ route('admin.post.change-status', [
+                                                            'id' => $post->id,
+                                                            'postStatus' => config('custom.post_status.approved'),
+                                                        ]) }}>{{ __('Approved') }}</a>
                                                     <a class="dropdown-item" id="postStatusRejected"
-                                                        postStatus="{{ config('custom.post_status.rejected') }}"
-                                                        data="{{ $post->id }}">{{ __('Rejected') }}</a>
+                                                        changeStatusURL={{ route('admin.post.change-status', [
+                                                            'id' => $post->id,
+                                                            'postStatus' => config('custom.post_status.rejected'),
+                                                        ]) }}>{{ __('Rejected') }}</a>
+                                                @endif
+                                                @if (Auth::user()->role_id == config('custom.user_roles.writer'))
+                                                    <a class="dropdown-item" id="postStatusPending"
+                                                        changeStatusURL={{ route('admin.post.change-status', [
+                                                            'id' => $post->id,
+                                                            'postStatus' => config('custom.post_status.pending'),
+                                                        ]) }}>{{ __('Pending') }}</a>
+                                                    <a class="dropdown-item" id="postStatusCancel"
+                                                        changeStatusURL={{ route('admin.post.change-status', [
+                                                            'id' => $post->id,
+                                                            'postStatus' => config('custom.post_status.cancel'),
+                                                        ]) }}>{{ __('Cancel') }}</a>
                                                 @endif
                                             </ul>
                                         </div>
@@ -66,6 +82,12 @@
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+    {{-- Pagination --}}
+    <div class="container">
+        <div class="row">
+            {{ $posts->links('pagination::bootstrap-4') }}
         </div>
     </div>
 @endsection

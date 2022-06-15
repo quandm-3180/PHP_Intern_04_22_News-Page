@@ -17,3 +17,4 @@ mix.js('resources/js/app.js', 'public/js')
 
 //custom
 mix.js('resources/js/summernote.js', 'public/js');
+mix.js('resources/js/changepoststatus.js', 'public/js');
