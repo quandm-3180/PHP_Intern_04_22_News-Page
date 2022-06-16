@@ -153,7 +153,12 @@
                     </section>
                 </div>
                 <!-- /.RECENT NEWS -->
+
+                <!-- /.left content inner -->
+                @include('client.layout.sidebar')
             </div>
+            <!-- side content end -->
+        </div>
         </div>
         <section>
             <div class="container">
@@ -206,9 +211,9 @@
                                                 'categorySlug' => $postofTravleItem->category->slug,
                                                 'postSlug' => $postofTravleItem->slug,
                                             ]) }}"
-                                                rel="bookmark"><img class="entry-thumb"
+                                                rel="bookmark"><img class="entry-thumb box_item_size"
                                                     src="{{ asset('image/' . $postofTravleItem->images[0]->image) }}"
-                                                    alt="" height="70" width="100"></a>
+                                                    alt=""></a>
                                         </div>
                                         <div class="item-details">
                                             <h3 class="td-module-title"><a
@@ -277,9 +282,9 @@
                                                 'categorySlug' => $postofFoodItem->category->slug,
                                                 'postSlug' => $postofFoodItem->slug,
                                             ]) }}"
-                                                rel="bookmark"><img class="entry-thumb"
+                                                rel="bookmark"><img class="entry-thumb box_item_size"
                                                     src="{{ asset('image/' . $postofFoodItem->images[0]->image) }}"
-                                                    alt="" height="70" width="100"></a>
+                                                    alt=""></a>
                                         </div>
                                         <div class="item-details">
                                             <h3 class="td-module-title"><a
@@ -348,9 +353,9 @@
                                                 'categorySlug' => $postofFashionItem->category->slug,
                                                 'postSlug' => $postofFashionItem->slug,
                                             ]) }}"
-                                                rel="bookmark"><img class="entry-thumb"
+                                                rel="bookmark"><img class="entry-thumb box_item_size"
                                                     src="{{ asset('image/' . $postofFashionItem->images[0]->image) }}"
-                                                    alt="" height="70" width="100"></a>
+                                                    alt=""></a>
                                         </div>
                                         <div class="item-details">
                                             <h3 class="td-module-title"><a

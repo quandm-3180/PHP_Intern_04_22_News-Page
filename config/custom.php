@@ -38,4 +38,5 @@ return [
         'food' => 2,
         'fashion' => 6,
     ],
+    'post_hot_in_sidebar_num' => 4,
 ];
