@@ -34,6 +34,7 @@ Route::name('client.')
         Route::get('/category/{slug}', [ClientPostController::class, 'getPostbyCategory'])->name('post-by-category');
         Route::get('/category/{categorySlug}/post/{postSlug}', [ClientPostController::class, 'postDetails'])
             ->name('post-details');
+        Route::get('post/search', [ClientPostController::class, 'searchPost'])->name('post.search');
     });
 
 Route::prefix('admin')

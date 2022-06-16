@@ -30,6 +30,8 @@ class PostController extends Controller
             ->isApproved()->orderBy('created_at', 'desc')
             ->limit(config('custom.recent_post_by_category_num'))->get();
 
+        $postHotinSidebar = $this->listPostHotinSidebar();
+
         return view('client.home.index', compact(
             'categories',
             'popularPosts',
@@ -37,6 +39,7 @@ class PostController extends Controller
             'recentPostofTravle',
             'recentPostofFood',
             'recentPostofFashion',
+            'postHotinSidebar',
         ));
     }
 
@@ -44,8 +47,9 @@ class PostController extends Controller
     {
         $categories = Category::isShow()->get();
         $post = Post::isApproved()->where('slug', $postSlug)->first();
+        $postHotinSidebar = $this->listPostHotinSidebar();
 
-        return view('client.post.post-details', compact('categories', 'post'));
+        return view('client.post.post-details', compact('categories', 'post', 'postHotinSidebar'));
     }
 
     public function getPostbyCategory($categorySlug)
@@ -54,7 +58,34 @@ class PostController extends Controller
         $category = Category::where('slug', $categorySlug)->first();
         $posts = Post::where('category_id', $category->id)->isApproved()
             ->orderBy('created_at', 'desc')->paginate(config('custom.per_page'));
+        $postHotinSidebar = $this->listPostHotinSidebar();
 
-        return view('client.post.post-by-category', compact('categories', 'category', 'posts'));
+        return view('client.post.post-by-category', compact(
+            'categories',
+            'category',
+            'posts',
+            'postHotinSidebar',
+        ));
+    }
+
+    public function listPostHotinSidebar()
+    {
+        $postHotinSidebar = Post::with('images', 'category')->isApproved()
+            ->orderBy('created_at', 'desc')
+            ->limit(config('custom.post_hot_in_sidebar_num'))->get();
+
+        return $postHotinSidebar;
+    }
+
+    public function searchPost(Request $request)
+    {
+        $keyword = $request->q;
+        $listofSearchPost = Post::with('images', 'category')->where('name', 'like', "%$keyword%")
+            ->isApproved()->orderBy('created_at', 'desc')
+            ->paginate(config('custom.per_page'));
+        $categories = Category::isShow()->get();
+        $postHotinSidebar = $this->listPostHotinSidebar();
+
+        return view('client.post.search', compact('categories', 'listofSearchPost', 'keyword', 'postHotinSidebar'));
     }
 }
