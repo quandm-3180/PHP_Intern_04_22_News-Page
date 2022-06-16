@@ -30,6 +30,12 @@
                     <p>{{ __('category') }}</p>
                 </a>
             </li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.user.index') }}">
+                    <i class="nc-icon nc-circle-09"></i>
+                    <p>{{ __('User') }}</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

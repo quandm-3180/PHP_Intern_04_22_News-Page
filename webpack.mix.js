@@ -19,3 +19,4 @@ mix.js('resources/js/app.js', 'public/js')
 mix.sass('resources/sass/custom.scss', 'public/css');
 mix.js('resources/js/summernote.js', 'public/js');
 mix.js('resources/js/changepoststatus.js', 'public/js');
+mix.js('resources/js/change-user-status.js', 'public/js');

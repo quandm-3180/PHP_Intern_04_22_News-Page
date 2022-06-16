@@ -65,5 +65,10 @@
     "edit_post": "Edit post",
     "change_status": "Change status",
     "post_status": "Post status",
-    "recent_news": "Recent news"
+    "recent_news": "Recent news",
+    "list_user": "List users",
+    "user": "User",
+    "phone": "List users",
+    "role": "List users",
+    "no_record": "No record"
 }

@@ -68,4 +68,27 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class);
     }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function getStatusAttribute($value)
+    {
+        $userStatus = null;
+        switch ($value) {
+            case config('custom.user_status.active'):
+                $userStatus = __('active');
+                break;
+            case config('custom.user_status.block'):
+                $userStatus = __('block');
+                break;
+            default:
+                $userStatus = __('active');
+                break;
+        }
+
+        return $userStatus;
+    }
 }

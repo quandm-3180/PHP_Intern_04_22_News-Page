@@ -7,7 +7,7 @@ return [
         'admin' => 3,
     ],
     'user_status' => [
-        'inactive' => 0,
+        'block' => 0,
         'active' => 1,
     ],
     'post_popular' => 1,

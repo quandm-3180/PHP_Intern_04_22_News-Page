@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\PostController as ClientPostController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
@@ -43,4 +44,7 @@ Route::prefix('admin')
         Route::get('/post-status', [AdminPostController::class, 'postStatus'])->name('post.post-status');
         Route::post('/change-post-status/{id}/{postStatus}', [AdminPostController::class, 'changePostStatus'])
             ->name('post.change-status');
+        Route::get('user', [UserController::class, 'index'])->name('user.index');
+        Route::post('user/change-status/{id}/{userStatus}', [UserController::class, 'changeUserStatus'])
+            ->name('user.change-status');
     });

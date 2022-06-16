@@ -66,5 +66,10 @@
     "edit_post": "Sửa bài viết",
     "change_status": "Thay đổi trạng thái",
     "post_status": "Trạng thái bài viết",
-    "recent_news": "Tin tức mới"
+    "recent_news": "Tin tức mới",
+    "list_user": "Danh sách người dùng",
+    "User": "Người dùng",
+    "Phone": "Số điện thoại",
+    "Role": "Vai trò",
+    "no_record": "Không có bản ghi"
 }
