@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\PostController as ClientPostController;
+use App\Http\Controllers\Client\CommentController as ClientCommentController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
@@ -35,6 +36,7 @@ Route::name('client.')
         Route::get('/category/{categorySlug}/post/{postSlug}', [ClientPostController::class, 'postDetails'])
             ->name('post-details');
         Route::get('post/search', [ClientPostController::class, 'searchPost'])->name('post.search');
+        Route::post('comment/{postId}', [ClientCommentController::class, 'store'])->name('comment.store');
     });
 
 Route::prefix('admin')

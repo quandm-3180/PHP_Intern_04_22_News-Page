@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -48,8 +49,16 @@ class PostController extends Controller
         $categories = Category::isShow()->get();
         $post = Post::isApproved()->where('slug', $postSlug)->first();
         $postHotinSidebar = $this->listPostHotinSidebar();
+        $relatedPosts = $this->listRelatedPosts($post->category_id, $post->id);
+        $comments = $this->getCommentsinPost($post->id);
 
-        return view('client.post.post-details', compact('categories', 'post', 'postHotinSidebar'));
+        return view('client.post.post-details', compact(
+            'categories',
+            'post',
+            'postHotinSidebar',
+            'relatedPosts',
+            'comments',
+        ));
     }
 
     public function getPostbyCategory($categorySlug)
@@ -87,5 +96,24 @@ class PostController extends Controller
         $postHotinSidebar = $this->listPostHotinSidebar();
 
         return view('client.post.search', compact('categories', 'listofSearchPost', 'keyword', 'postHotinSidebar'));
+    }
+
+    public function listRelatedPosts($categoryId, $postId)
+    {
+        $relatedPosts = Post::with('images', 'category')->where('category_id', $categoryId)
+            ->where('id', '!=', $postId)
+            ->isApproved()->orderByDesc('created_at')
+            ->limit(config('custom.related_posts_num'))->get();
+
+        return $relatedPosts;
+    }
+
+    public function getCommentsinPost($postId)
+    {
+        $comments = Comment::with('user')->where('post_id', $postId)
+            ->orderByDesc('created_at')
+            ->limit(config('custom.comment_in_post_num'))->get();
+
+        return $comments;
     }
 }

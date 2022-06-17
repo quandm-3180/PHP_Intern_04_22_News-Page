@@ -9,7 +9,7 @@
                     </li>
                     @foreach ($categories as $item)
                         <li><a href="{{ route('client.post-by-category', $item->slug) }}"
-                                class="category03">{{ __("$item->name") }}</a></li>
+                                class="category03">{{ $item->name }}</a></li>
                     @endforeach
                     <li><a href="#" class="category08">{{ __('CONTACT') }}</a> </li>
                 </ul>

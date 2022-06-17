@@ -71,5 +71,12 @@
     "User": "Người dùng",
     "Phone": "Số điện thoại",
     "Role": "Vai trò",
-    "no_record": "Không có bản ghi"
+    "no_record": "Không có bản ghi",
+    "search_result_for": "Kết quả tìm kiếm cho",
+    "search": "Tìm kiếm",
+    "related_news": "Tin tức liên quan",
+    "comment": "Bình luận",
+    "your_message": "Nội dung",
+    "post_your_message": "Đăng",
+    "login_to_comment": "Đăng nhập để bình luận"
 }

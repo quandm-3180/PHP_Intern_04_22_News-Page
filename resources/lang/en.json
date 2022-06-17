@@ -70,5 +70,12 @@
     "user": "User",
     "phone": "List users",
     "role": "List users",
-    "no_record": "No record"
+    "no_record": "Không có bản ghi",
+    "search_result_for": "Search result for",
+    "search": "Search",
+    "related_news": "Related news",
+    "comment": "Comment",
+    "your_message": "Your message",
+    "post_your_message": "Post your message",
+    "login_to_comment": "Login to comment"
 }
