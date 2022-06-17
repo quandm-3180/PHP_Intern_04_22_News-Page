@@ -90,6 +90,7 @@ class PostController extends Controller
         $data = $request->all();
         $post = Post::findOrFail($id);
         $post->status = config('custom.post_status.pending');
+        $post->slug = Str::slug($request->name);
         $post->is_popular = ($request->is_popular == config('custom.post_popular.yes')
             ? config('custom.post_popular.yes') : config('custom.post_popular.no'));
         $post->update($data);
@@ -161,5 +162,16 @@ class PostController extends Controller
             'code' => 200,
             'message' => __('messages.update-success')
         ]);
+    }
+
+    public function previewPost($slug)
+    {
+        $categories = Category::isShow()->get();
+        $post = Post::where('slug', $slug)->first();
+        $postHotinSidebar = Post::with('images', 'category')->isApproved()
+            ->orderBy('created_at', 'desc')
+            ->limit(config('custom.post_hot_in_sidebar_num'))->get();
+
+        return view('client.post.post-details', compact('categories', 'post', 'postHotinSidebar'));
     }
 }

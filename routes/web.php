@@ -44,6 +44,7 @@ Route::prefix('admin')
     ->group(function () {
         Route::resource('category', AdminCategoryController::class);
         Route::resource('post', AdminPostController::class);
+        Route::get('/post/preview/{slug}', [AdminPostController::class, 'previewPost'])->name('post.preview');
         Route::get('/post-status', [AdminPostController::class, 'postStatus'])->name('post.post-status');
         Route::post('/change-post-status/{id}/{postStatus}', [AdminPostController::class, 'changePostStatus'])
             ->name('post.change-status');

@@ -39,7 +39,7 @@
                                     <td>{{ $post->status }}</td>
                                     <td>
                                         <a class="btn btn-sm btn-info"
-                                            href="{{ route('admin.post.edit', $post->id) }}">{{ __('Detail') }}
+                                            href="{{ route('admin.post.preview', $post->slug) }}">{{ __('Preview') }}
                                         </a>
                                     </td>
                                     <th>
