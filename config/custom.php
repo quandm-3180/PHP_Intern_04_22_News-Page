@@ -39,4 +39,10 @@ return [
         'fashion' => 6,
     ],
     'post_hot_in_sidebar_num' => 4,
+    'related_posts_num' => 3,
+    'comment_status' => [
+        'hidden' => 0,
+        'show' => 1,
+    ],
+    'comment_in_post_num' => 5,
 ];
