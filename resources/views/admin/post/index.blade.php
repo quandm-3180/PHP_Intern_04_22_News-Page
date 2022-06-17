@@ -37,21 +37,19 @@
                                     <td>{{ $post->category->name }}</td>
                                     <td>{{ $post->user->name }}</td>
                                     <td>{{ $post->status }}</td>
-                                    <td>
+                                    <th>
                                         <a class="btn btn-sm btn-info"
-                                            href="{{ route('admin.post.edit', $post->id) }}">{{ __('Detail') }}
+                                            href="{{ route('admin.post.preview', $post->slug) }}">{{ __('Preview') }}
                                         </a> &nbsp;
                                         <a class="btn btn-sm btn-warning"
                                             href="{{ route('admin.post.edit', $post->id) }}">{{ __('Edit') }}
                                         </a> &nbsp;
-                                        <form action="{{ route('admin.post.destroy', $post->id) }}" method="post">
-                                            @csrf
-                                            @method('Delete')
-
-                                            <input type="submit" class="btn btn-sm btn-danger"
-                                                value="{{ __('Remove') }}">
-                                        </form>
-                                    </td>
+                                        <input type="submit" class="btn btn-sm btn-danger" value="{{ __('Remove') }}">
+                                    </th>
+                                    <form action="{{ route('admin.post.destroy', $post->id) }}" method="post">
+                                        @csrf
+                                        @method('Delete')
+                                    </form>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\PostController as ClientPostController;
+use App\Http\Controllers\Client\CommentController as ClientCommentController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
@@ -42,6 +43,7 @@ Route::prefix('admin')
     ->group(function () {
         Route::resource('category', AdminCategoryController::class);
         Route::resource('post', AdminPostController::class);
+        Route::get('/post/preview/{slug}', [AdminPostController::class, 'previewPost'])->name('post.preview');
         Route::get('/post-status', [AdminPostController::class, 'postStatus'])->name('post.post-status');
         Route::post('/change-post-status/{id}/{postStatus}', [AdminPostController::class, 'changePostStatus'])
             ->name('post.change-status');

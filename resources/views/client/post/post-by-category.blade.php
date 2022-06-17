@@ -9,7 +9,7 @@
                     </li>
                     @foreach ($categories as $item)
                         <li><a href="{{ route('client.post-by-category', $item->slug) }}"
-                                class="category03">{{ __("$item->name") }}</a></li>
+                                class="category03">{{ $item->name }}</a></li>
                     @endforeach
                     <li><a href="#" class="category08">{{ __('CONTACT') }}</a> </li>
                 </ul>
@@ -49,7 +49,8 @@
                                     title="">{{ $post->name }}</a></h3>
                             <div class="date">
                                 <ul>
-                                    <li>{{ __('By') }} <a href="#"><span>{{ $post->user->name }}</span></a> --</li>
+                                    <li>{{ __('By') }} <a href="#"><span>{{ $post->user->name }}</span></a>
+                                        --</li>
                                     <li><a title="{{ $post->getAttributes()['created_at'] }}"
                                             href="#">{{ $post->created_at }}</a>
                                     </li>
