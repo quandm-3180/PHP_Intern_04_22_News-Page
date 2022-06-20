@@ -26,10 +26,37 @@
                 <div class="row">
                     <div class="col-sm-4 col-md-2">
                         <div class="top_header_menu_wrap">
-                            <ul class="top-header-menu">
-                                <li><a href="{{ url('register') }}">{{ __('REGISTER') }}</a></li>
-                                <li><a href="{{ url('login') }}">{{ __('LOGIN') }}</a></li>
-                            </ul>
+                            @guest
+                                <ul class="top-header-menu">
+                                    <li><a href="{{ route('register') }}">{{ __('REGISTER') }}</a></li>
+                                    <li><a href="{{ route('login') }}">{{ __('LOGIN') }}</a></li>
+                                </ul>
+                            @endguest
+                            @auth
+                                <div class="btn-group mt_1">
+                                    <button type="button" class="btn btn-sm btn-success dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ Auth::user()->name }}
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @if (Auth::user()->role_id == config('custom.user_roles.admin'))
+                                            <li><a href="{{ route('admin.post.index') }}">{{ __('Admin') }}</a> </li>
+                                        @endif
+                                        <li><a href="{{ route('client.user.index') }}">{{ __('Profile') }}</a>
+                                        </li>
+                                        <li>
+                                            <a>
+                                                <input form="logout-form" class="btn btn-sm" type="submit"
+                                                    value="{{ __('Logout') }}">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            @endauth
                         </div>
                     </div>
                     <!--breaking news-->

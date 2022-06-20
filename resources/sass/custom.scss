@@ -28,3 +28,24 @@
 .color_dark {
     color: #222;
 }
+.mt_1 {
+    margin-top: 5px;
+}
+.mt_2 {
+    margin-top: 10px;
+}
+.section-card {
+    background-color: #f4f4f4;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 10px 0 20px 0;
+}
+img {
+    max-width: 685px !important;
+    object-fit: cover;
+}
+.main-content pre {
+    word-break: keep-all;
+    border: 0;
+    background-color: transparent;
+}

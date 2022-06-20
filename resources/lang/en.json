@@ -77,5 +77,6 @@
     "comment": "Comment",
     "your_message": "Your message",
     "post_your_message": "Post your message",
-    "login_to_comment": "Login to comment"
+    "Profile": "Profile",
+    "edit_profile": "Edit profile"
 }
