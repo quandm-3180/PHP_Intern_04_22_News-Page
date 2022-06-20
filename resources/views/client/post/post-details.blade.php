@@ -48,6 +48,7 @@
                 </article>
                 <!-- Related news area
                                                                                          ============================================ -->
+                @isset($relatedPosts)                    
                 @if ($relatedPosts->count())
                     <div class="related-news-inner">
                         <h3 class="category-headding ">{{ __('related_news') }}</h3>
@@ -102,9 +103,11 @@
                         </div>
                     </div>
                 @endif
+                @endisset       
                 <!-- form
                                                                                           ============================================ -->
                 <br><br>
+                @isset($comments)                    
                 <div class="form-area">
                     <h3 class="category-headding">{{ __('comment') }}</h3>
                     <div class="headding-border"></div>
@@ -148,6 +151,7 @@
                         </li>
                     @endforeach
                 </ul>
+                @endisset
             </div>
             <!-- /.left content inner -->
             <br><br>

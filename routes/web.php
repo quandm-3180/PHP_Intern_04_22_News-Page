@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\PostController as ClientPostController;
 use App\Http\Controllers\Client\CommentController as ClientCommentController;
+use App\Http\Controllers\Client\UserController as ClientUserController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
@@ -37,6 +38,9 @@ Route::name('client.')
             ->name('post-details');
         Route::get('post/search', [ClientPostController::class, 'searchPost'])->name('post.search');
         Route::post('comment/{postId}', [ClientCommentController::class, 'store'])->name('comment.store');
+        Route::get('user/profile', [ClientUserController::class, 'index'])->name('user.index');
+        Route::get('user/profile/edit', [ClientUserController::class, 'edit'])->name('user.edit');
+        Route::post('user/profile/edit', [ClientUserController::class, 'update'])->name('user.update');
     });
 
 Route::prefix('admin')
