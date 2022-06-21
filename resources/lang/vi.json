@@ -80,5 +80,8 @@
     "post_your_message": "Đăng",
     "login_to_comment": "Đăng nhập để bình luận",
     "Profile": "Thông tin cá nhân",
-    "edit_profile": "Chỉnh sửa thông tin"
+    "no_results_for": "Không có kết quả cho",
+    "edit_profile": "Chỉnh sửa thông tin",
+    "delete_success": "Xoá thành công!",
+    "something_wrong": "Đã xảy ra sự cố"
 }

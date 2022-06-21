@@ -33,13 +33,10 @@
                                     <td> <a class="btn btn-sm btn-warning"
                                             href="{{ route('admin.category.edit', $category->id) }}">{{ __('Edit') }}
                                         </a> &nbsp;
-                                        <form action="{{ route('admin.category.destroy', $category->id) }}"
-                                            method="post">
-                                            @csrf
-                                            @method('Delete')
-
-                                            <input type="submit" class="btn btn-sm btn-danger" value="{{ __('Remove') }}">
-                                        </form>
+                                        <input id="deleteElement"
+                                            data-url="{{ route('admin.category.destroy', $category->id) }}"
+                                            data-name="{{ $category->name }}" type="submit"
+                                            class="btn btn-sm btn-danger" value="{{ __('Remove') }}">
                                     </td>
                                 </tr>
                             @endforeach
@@ -49,4 +46,11 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    @parent
+    <script src="{{ asset('bower_components/toastr/toastr.js') }}"></script>
+    <script src="{{ asset('bower_components/jquery.i18n/src/jquery.i18n.js') }}"></script>
+    <script src="{{ asset('bower_components/jquery.i18n/src/jquery.i18n.messagestore.js') }}"></script>
+    <script src="{{ asset('js/confirm-remove.js') }}"></script>
 @endsection

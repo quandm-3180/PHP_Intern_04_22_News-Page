@@ -45,6 +45,7 @@ Route::name('client.')
 
 Route::prefix('admin')
     ->name('admin.')
+    ->middleware('check-admin')
     ->group(function () {
         Route::resource('category', AdminCategoryController::class);
         Route::resource('post', AdminPostController::class);

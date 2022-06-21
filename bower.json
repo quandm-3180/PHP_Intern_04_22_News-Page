@@ -19,6 +19,8 @@
     "css": "https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i",
     "font-awesome.min": "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css",
     "templete-news365": "git@github.com:quantroy19/templete-news365.git",
-    "toastr": "^2.1.3"
+    "toastr": "^2.1.3",
+    "sweetalert2": "^11.4.18",
+    "jquery.i18n": "^1.0.7"
   }
 }
