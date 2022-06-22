@@ -46,7 +46,13 @@ class Post extends Model
 
     public function getCreatedAtAttribute($value)
     {
-        return Carbon::parse($value)->format('M, d Y');
+        if (app()->getLocale() == config('custom.locale.english')) {
+            return Carbon::parse($value)->format('M, d Y');
+        }
+
+        if (app()->getLocale() == config('custom.locale.vietnam')) {
+            return Carbon::parse($value)->format('d/m/Y');
+        }
     }
 
     public function scopeIsApproved($query)

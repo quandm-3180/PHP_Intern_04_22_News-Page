@@ -52,7 +52,7 @@
                         </div>
                         <div class="mt_2">
                             <a href="{{ route('client.user.edit') }}" class="">
-                                <i class="fa fa-pencil-square-o fa-2x btn btn-sm btn-warning" aria-hidden="true"></i>
+                                <i class="fa fa-pencil-square-o btn btn-sm btn-warning" aria-hidden="true"></i>
                             </a>
                         </div>
                     @endisset

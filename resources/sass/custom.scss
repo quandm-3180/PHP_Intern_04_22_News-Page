@@ -19,7 +19,7 @@
 }
 .box_item_size {
     height: 70px;
-    width: 100;
+    width: 100px;
 }
 .textarea_message {
     height: 80px !important;
@@ -48,4 +48,7 @@ img {
     word-break: keep-all;
     border: 0;
     background-color: transparent;
+}
+.h-150 {
+    height: 150px;
 }

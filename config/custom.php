@@ -45,4 +45,8 @@ return [
         'show' => 1,
     ],
     'comment_in_post_num' => 5,
+    'locale' => [
+        'english' => 'en',
+        'vietnam' => 'vi',
+    ],
 ];

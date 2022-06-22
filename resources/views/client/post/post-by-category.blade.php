@@ -43,7 +43,8 @@
                     <div class="post-style2 wow fadeIn" data-wow-duration="1s">
                         <a
                             href="{{ route('client.post-details', ['categorySlug' => $category->slug, 'postSlug' => $post->slug]) }}"><img
-                                class="w_240" src="{{ asset('image/' . $post->images[0]->image) }}" alt=""></a>
+                                class="w_240 h-150" src="{{ asset('image/' . $post->images[0]->image) }}"
+                                alt=""></a>
                         <div class="post-style2-detail">
                             <h3><a href="{{ route('client.post-details', ['categorySlug' => $category->slug, 'postSlug' => $post->slug]) }}"
                                     title="">{{ $post->name }}</a></h3>
