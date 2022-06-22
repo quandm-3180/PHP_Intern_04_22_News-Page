@@ -24,18 +24,20 @@
                     <p>{{ __('post_status') }}</p>
                 </a>
             </li>
-            <li>
-                <a class="nav-link" href="{{ route('admin.category.index') }}">
-                    <i class="nc-icon nc-bullet-list-67"></i>
-                    <p>{{ __('category') }}</p>
-                </a>
-            </li>
-            <li>
-                <a class="nav-link" href="{{ route('admin.user.index') }}">
-                    <i class="nc-icon nc-circle-09"></i>
-                    <p>{{ __('User') }}</p>
-                </a>
-            </li>
+            @if (Auth::user()->role_id == config('custom.user_roles.admin'))
+                <li>
+                    <a class="nav-link" href="{{ route('admin.category.index') }}">
+                        <i class="nc-icon nc-bullet-list-67"></i>
+                        <p>{{ __('category') }}</p>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{{ route('admin.user.index') }}">
+                        <i class="nc-icon nc-circle-09"></i>
+                        <p>{{ __('User') }}</p>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
 </div>

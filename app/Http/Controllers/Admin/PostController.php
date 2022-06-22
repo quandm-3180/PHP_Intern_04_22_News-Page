@@ -20,7 +20,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->get();
+        $posts = Post::with('category')->orderByDesc('created_at')
+            ->paginate(config('custom.per_page'));
 
         return view('admin.post.index', compact('posts'));
     }
@@ -107,7 +108,13 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        return response()->json([
+            'code' => 200,
+            'message' => __('delete_success'),
+        ]);
     }
 
     public function storeImage($request, $post_id)

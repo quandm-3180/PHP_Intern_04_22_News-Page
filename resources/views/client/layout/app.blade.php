@@ -40,7 +40,8 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        @if (Auth::user()->role_id == config('custom.user_roles.admin'))
+                                        @if (Auth::user()->role_id == config('custom.user_roles.admin')
+                                                ||Auth::user()->role_id == config('custom.user_roles.writer'))
                                             <li><a href="{{ route('admin.post.index') }}">{{ __('Admin') }}</a> </li>
                                         @endif
                                         <li><a href="{{ route('client.user.index') }}">{{ __('Profile') }}</a>

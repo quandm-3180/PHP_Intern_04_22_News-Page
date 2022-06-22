@@ -41,15 +41,18 @@
                                         <a class="btn btn-sm btn-info"
                                             href="{{ route('admin.post.preview', $post->slug) }}">{{ __('Preview') }}
                                         </a> &nbsp;
-                                        <a class="btn btn-sm btn-warning"
-                                            href="{{ route('admin.post.edit', $post->id) }}">{{ __('Edit') }}
-                                        </a> &nbsp;
-                                        <input type="submit" class="btn btn-sm btn-danger" value="{{ __('Remove') }}">
+                                        @can('update', $post)
+                                            <a class="btn btn-sm btn-warning"
+                                                href="{{ route('admin.post.edit', $post->id) }}">{{ __('Edit') }}
+                                            </a> &nbsp;
+                                        @endcan
+                                        @if (Auth::user()->role_id == config('custom.user_roles.admin'))
+                                            <a id="deleteElement" data-url="{{ route('admin.post.destroy', $post->id) }}"
+                                                class="btn btn-sm btn-danger"
+                                                data-name="{{ $post->name }}">{{ __('Remove') }}
+                                            </a>
+                                        @endif
                                     </th>
-                                    <form action="{{ route('admin.post.destroy', $post->id) }}" method="post">
-                                        @csrf
-                                        @method('Delete')
-                                    </form>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -58,4 +61,17 @@
             </div>
         </div>
     </div>
+    {{-- Pagination --}}
+    <div class="container">
+        <div class="row">
+            {{ $posts->links('pagination::bootstrap-4') }}
+        </div>
+    </div>
+@endsection
+@section('script')
+    @parent
+    <script src="{{ asset('bower_components/toastr/toastr.js') }}"></script>
+    <script src="{{ asset('bower_components/jquery.i18n/src/jquery.i18n.js') }}"></script>
+    <script src="{{ asset('bower_components/jquery.i18n/src/jquery.i18n.messagestore.js') }}"></script>
+    <script src="{{ asset('js/confirm-remove.js') }}"></script>
 @endsection

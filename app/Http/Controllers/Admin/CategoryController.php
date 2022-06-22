@@ -102,6 +102,9 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->delete();
 
-        return  redirect('admin/category');
+        return response()->json([
+            'code' => 200,
+            'message' => __('delete_success'),
+        ]);
     }
 }
