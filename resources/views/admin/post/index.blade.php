@@ -31,7 +31,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $post->name }}</td>
                                     <td>
-                                        <img width="100px" src="{{ asset('image/' . $post->images[0]->image) }}"
+                                        <img class="box_item_size" src="{{ asset('image/' . $post->images[0]->image) }}"
                                             alt="img">
                                     </td>
                                     <td>{{ $post->category->name }}</td>
