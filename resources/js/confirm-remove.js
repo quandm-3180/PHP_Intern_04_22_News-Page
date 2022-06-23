@@ -4,6 +4,8 @@ window.Swal = swal;
 $(document).on('click', '#deleteElement', function () {
     let deletePostURL = $(this).data('url');
     let name = $(this).data('name');
+    let thisElement = $(this);
+
     $.i18n({
         locale: document.documentElement.lang,
     }).load({
@@ -30,10 +32,8 @@ $(document).on('click', '#deleteElement', function () {
                     },
                     success: function (response) {
                         if (response.code == 200) {
+                            thisElement.closest('tr').remove();
                             toastr.success(response.message);
-                            setTimeout(() => {
-                                location.reload();
-                            }, 1000);
                         }
                     },
                 });
