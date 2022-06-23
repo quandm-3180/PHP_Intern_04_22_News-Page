@@ -4,7 +4,7 @@
             <div class="col-sm-3">
                 <div class="footer-box footer-logo-address">
                     <!-- address  -->
-                    <img src="{{ asset('bower_components/templete-news365/images/footer-logo.png') }}"
+                    <img class="w_240" src="{{ asset('bower_components/templete-news365/images/footer-logo.png') }}"
                         class="img-responsive" alt="">
                     <address>
                         {{ __('14L.E Goulburn St, Sydney 2000NSW') }}
