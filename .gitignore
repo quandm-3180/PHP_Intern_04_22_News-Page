@@ -19,3 +19,5 @@ yarn-error.log
 /public/bower_components/* 
 /public/image
 /public/i18n
+/coverage
+.psysh.php
