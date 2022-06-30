@@ -35,6 +35,9 @@ $(document).on('click', '#deleteElement', function () {
                             thisElement.closest('tr').remove();
                             toastr.success(response.message);
                         }
+                        if (response.code == 400) {
+                            toastr.error(response.message);
+                        }
                     },
                 });
             }
