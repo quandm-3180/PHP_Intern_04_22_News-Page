@@ -51,9 +51,13 @@ class CategoryController extends Controller
         $options['name'] = $request->name;
         $options['slug'] = Str::slug($request->name);
         $options['status'] = $request->is_show ? $request->is_show : config('custom.category_status.hidden');
-        $this->categoryRepo->creatCategory($options);
+        $status = $this->categoryRepo->creatCategory($options);
 
-        return redirect('admin/category');
+        if ($status) {
+            return redirect()->route('admin.category.index')->with('success', __('remove_success'));
+        }
+
+        return back()->with('error', __('remove_fail'));
     }
 
     /**
@@ -89,13 +93,16 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, $id)
     {
-        $category = $this->categoryRepo->getCategory($id);
         $options['name'] = $request->name;
         $options['slug'] = Str::slug($request->name);
         $options['status'] = $request->is_show ? $request->is_show : config('custom.category_status.hidden');
-        $category->update($options);
+        $status = $this->categoryRepo->update($id, $options);
 
-        return  redirect('admin/category');
+        if ($status) {
+            return redirect()->route('admin.category.index')->with('success', __('edit_success'));
+        }
+
+        return back()->with('error', __('edit_fail'));
     }
 
     /**
@@ -106,9 +113,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = $this->categoryRepo->getCategory($id);
+        $status = $this->categoryRepo->delete($id);
 
-        if ($category->delete()) {
+        if ($status) {
             return response()->json([
                 'code' => 200,
                 'message' => __('delete_success'),

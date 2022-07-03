@@ -82,5 +82,9 @@
     "no_results_for": "No results for",
     "edit_profile": "Edit profile",
     "delete_success": "Delete successful!",
-    "something_wrong": "Something went wrong!"
+    "something_wrong": "Something went wrong!",
+    "edit_success": "Edit success",
+    "edit_fail": "Edit fail",
+    "remove_success": "Remove success",
+    "remove_fail": "Remove fail"
 }
