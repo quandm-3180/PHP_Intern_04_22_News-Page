@@ -83,5 +83,9 @@
     "no_results_for": "Không có kết quả cho",
     "edit_profile": "Chỉnh sửa thông tin",
     "delete_success": "Xoá thành công!",
-    "something_wrong": "Đã xảy ra sự cố"
+    "something_wrong": "Đã xảy ra sự cố",
+    "edit_success": "Sửa thành công",
+    "edit_fail": "Sửa thất bại",
+    "remove_success": "Xoá thành công",
+    "remove_fail": "Xoá thất bại"
 }

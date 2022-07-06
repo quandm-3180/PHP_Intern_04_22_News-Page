@@ -20,6 +20,7 @@ class CategoryTest extends ModelTestCase
     {
         $fillable = [
             'name',
+            'slug',
             'status',
         ];
         $this->runConfigurationAssertions(
