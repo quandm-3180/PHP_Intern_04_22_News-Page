@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Admin\Category;
+namespace App\Repositories\Category;
 
 use App\Models\Category;
 use App\Repositories\BaseRepository;
@@ -26,5 +26,10 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     public function creatCategory($options)
     {
         return  $this->model->create($options);
+    }
+
+    public function getCategoryListStatusIsShow()
+    {
+        return $this->model->isShow()->get();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Controller\Admin;
+namespace Tests\Unit\Http\Controller\Admin;
 
 use Mockery as m;
 use App\Models\Category;
@@ -10,11 +10,11 @@ use Tests\TestCase;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
-use App\Repositories\Admin\Category\CategoryRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 
-class CategoryTest extends TestCase
+class CategoryControllerTest extends TestCase
 {
     protected $categories;
     protected $category;

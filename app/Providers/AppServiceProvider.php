@@ -2,8 +2,14 @@
 
 namespace App\Providers;
 
-use App\Repositories\Admin\Category\CategoryRepository;
-use App\Repositories\Admin\Category\CategoryRepositoryInterface;
+use App\Repositories\Category\CategoryRepository;
+use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Image\ImageRepository;
+use App\Repositories\Image\ImageRepositoryInterface;
+use App\Repositories\Post\PostRepository;
+use App\Repositories\Post\PostRepositoryInterface;
+use App\Repositories\User\UserRepository;
+use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,6 +24,18 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             CategoryRepositoryInterface::class,
             CategoryRepository::class,
+        );
+        $this->app->singleton(
+            UserRepositoryInterface::class,
+            UserRepository::class,
+        );
+        $this->app->singleton(
+            PostRepositoryInterface::class,
+            PostRepository::class,
+        );
+        $this->app->singleton(
+            ImageRepositoryInterface::class,
+            ImageRepository::class,
         );
     }
 

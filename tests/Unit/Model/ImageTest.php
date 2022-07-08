@@ -18,9 +18,16 @@ class ImageTest extends ModelTestCase
 
     public function testModelConfiguration()
     {
+        $fillable = [
+            'image',
+            'post_id',
+        ];
         $this->runConfigurationAssertions(
             $this->model,
-            ['table' => 'images'],
+            [
+                'table' => 'images',
+                'fillable' => $fillable,
+            ],
         );
     }
 
