@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Comment\CommentRepository;
+use App\Repositories\Comment\CommentRepositoryInterface;
 use App\Repositories\Image\ImageRepository;
 use App\Repositories\Image\ImageRepositoryInterface;
 use App\Repositories\Post\PostRepository;
@@ -36,6 +38,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             ImageRepositoryInterface::class,
             ImageRepository::class,
+        );
+        $this->app->singleton(
+            CommentRepositoryInterface::class,
+            CommentRepository::class,
         );
     }
 

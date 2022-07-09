@@ -22,6 +22,8 @@ class CommentTest extends ModelTestCase
         $fillable = [
             'content',
             'status',
+            'post_id',
+            'user_id',
         ];
         $this->runConfigurationAssertions(
             $this->model,

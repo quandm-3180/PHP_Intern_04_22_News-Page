@@ -32,4 +32,9 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     {
         return $this->model->isShow()->get();
     }
+
+    public function getCategoryBySlug($slug)
+    {
+        return $this->model->where('slug', $slug)->first();
+    }
 }

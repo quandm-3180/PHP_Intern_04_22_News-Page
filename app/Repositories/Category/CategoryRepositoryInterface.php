@@ -13,4 +13,6 @@ interface CategoryRepositoryInterface extends RepositoryInterface
     public function creatCategory($options);
 
     public function getCategoryListStatusIsShow();
+
+    public function getCategoryBySlug($slug);
 }
