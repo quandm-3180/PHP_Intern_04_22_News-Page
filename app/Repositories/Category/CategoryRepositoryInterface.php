@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Admin\Category;
+namespace App\Repositories\Category;
 
 use App\Repositories\RepositoryInterface;
 
@@ -11,4 +11,6 @@ interface CategoryRepositoryInterface extends RepositoryInterface
     public function getCategory($id);
 
     public function creatCategory($options);
+
+    public function getCategoryListStatusIsShow();
 }

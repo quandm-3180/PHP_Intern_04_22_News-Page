@@ -5,14 +5,28 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\StoreRequest;
 use App\Http\Requests\Post\UpdateRequest;
-use App\Models\Category;
-use App\Models\Image;
-use App\Models\Post;
+use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Image\ImageRepositoryInterface;
+use App\Repositories\Post\PostRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
+    protected $postRepo;
+    protected $categoryRepo;
+    protected $imageRepo;
+
+    public function __construct(
+        PostRepositoryInterface $postRepo,
+        CategoryRepositoryInterface $categoryRepo,
+        ImageRepositoryInterface $imageRepo
+    ) {
+        $this->postRepo = $postRepo;
+        $this->categoryRepo = $categoryRepo;
+        $this->imageRepo = $imageRepo;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +34,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->orderByDesc('created_at')
-            ->paginate(config('custom.per_page'));
+        $posts = $this->postRepo->getPostList();
 
         return view('admin.post.index', compact('posts'));
     }
@@ -33,7 +46,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categorys =  Category::isShow()->get();
+        $categorys =  $this->categoryRepo->getCategoryListStatusIsShow();
 
         return view('admin.post.add', compact('categorys'));
     }
@@ -46,9 +59,9 @@ class PostController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $post = new Post($request->all());
-        $post->slug = Str::slug($request->name);
-        $post->save();
+        $options = $request->all();
+        $options['slug'] = Str::slug($request->name);
+        $post = $this->postRepo->create($options);
         $this->storeImage($request, $post->id);
 
         return redirect('admin/post');
@@ -73,8 +86,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $categorys = Category::isShow()->get();
-        $post = Post::findOrFail($id);
+        $categorys = $this->categoryRepo->getCategoryListStatusIsShow();
+        $post = $this->postRepo->getPost($id);
 
         return view('admin.post.edit', compact('categorys', 'post'));
     }
@@ -88,13 +101,12 @@ class PostController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        $data = $request->all();
-        $post = Post::findOrFail($id);
-        $post->status = config('custom.post_status.pending');
-        $post->slug = Str::slug($request->name);
-        $post->is_popular = ($request->is_popular == config('custom.post_popular.yes')
+        $options = $request->all();
+        $options['status'] = config('custom.post_status.pending');
+        $options['slug'] = Str::slug($request->name);
+        $options['is_popular'] = ($request->is_popular == config('custom.post_popular.yes')
             ? config('custom.post_popular.yes') : config('custom.post_popular.no'));
-        $post->update($data);
+        $post = $this->postRepo->update($id, $options);
         $this->updateImage($request, $post->images[0]->id);
 
         return redirect()->route('admin.post.index');
@@ -108,8 +120,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::findOrFail($id);
-        $post->delete();
+        $this->postRepo->delete($id);
 
         return response()->json([
             'code' => 200,
@@ -119,45 +130,40 @@ class PostController extends Controller
 
     public function storeImage($request, $post_id)
     {
-        $imagePost = new Image();
         if ($request->file('image')) {
             $file = $request->file('image');
             $filename = date('YmdHis') . $file->getClientOriginalName();
             $file->move(public_path('image'), $filename);
+            $options['image'] = $filename;
+            $options['post_id'] = $post_id;
 
-            $imagePost->image = $filename;
-            $imagePost->post_id = $post_id;
-            $imagePost->save();
+            $this->imageRepo->create($options);
         }
     }
 
     public function updateImage($request, $image_id)
     {
-        $imagePost = Image::findOrFail($image_id);
         if ($request->file('image')) {
             $file = $request->file('image');
             $filename = date('YmdHis') . $file->getClientOriginalName();
             $file->move(public_path('image'), $filename);
+            $options['image'] = $filename;
 
-            $imagePost->image = $filename;
-            $imagePost->update();
+            $this->imageRepo->update($image_id, $options);
         }
     }
 
     public function postStatus()
     {
-        $posts = Post::with('images', 'category', 'user')
-            ->orderBy('created_at', 'desc')->paginate(config('custom.per_page'));
+        $posts = $this->postRepo->getPostStatusList();
 
         return view('admin.post-status.index', compact('posts'));
     }
 
     public function changePostStatus($id, $postStatus)
     {
-        $post = Post::findOrFail($id);
-        $post->status = $postStatus;
-        $post->update();
-
+        $options['status'] = $postStatus;
+        $post = $this->postRepo->update($id, $options);
         if (!$post) {
             return response()->json([
                 'code' => 400,
@@ -173,11 +179,9 @@ class PostController extends Controller
 
     public function previewPost($slug)
     {
-        $categories = Category::isShow()->get();
-        $post = Post::where('slug', $slug)->first();
-        $postHotinSidebar = Post::with('images', 'category')->isApproved()
-            ->orderBy('created_at', 'desc')
-            ->limit(config('custom.post_hot_in_sidebar_num'))->get();
+        $categories = $this->categoryRepo->getCategoryListStatusIsShow();
+        $post = $this->postRepo->getPostBySlug($slug);
+        $postHotinSidebar = $this->postRepo->getPostStatusApprovedList();
 
         return view('client.post.post-details', compact('categories', 'post', 'postHotinSidebar'));
     }

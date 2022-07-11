@@ -3,23 +3,30 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    protected $userRepo;
+
+    public function __construct(UserRepositoryInterface $userRepo)
+    {
+        $this->userRepo = $userRepo;
+    }
+
     public function index()
     {
-        $users = User::with('role')->paginate(config('custom.per_page'));
+        $users = $this->userRepo->getUserList();
 
         return view('admin.user.index', compact('users'));
     }
 
     public function changeUserStatus($id, $userStatus)
     {
-        $user = User::findOrFail($id);
-        $user->status = $userStatus;
+        $user = $this->userRepo->getUser($id);
+        $options['status'] = $userStatus;
 
         if ($user->id == Auth::user()->id && $userStatus == config('custom.user_status.block')) {
             return response()->json([
@@ -28,7 +35,7 @@ class UserController extends Controller
             ]);
         };
 
-        $user->update();
+        $this->userRepo->update($id, $options);
 
         return response()->json([
             'code' => 200,
