@@ -86,5 +86,6 @@
     "edit_success": "Edit success",
     "edit_fail": "Edit fail",
     "remove_success": "Remove success",
-    "remove_fail": "Remove fail"
+    "remove_fail": "Remove fail",
+    "post-revenue-statistics-chart-in :year": "Post revenue statistics chart in :year"
 }

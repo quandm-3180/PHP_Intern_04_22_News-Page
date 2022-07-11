@@ -108,4 +108,10 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
             ->isApproved()->orderByDesc('created_at')
             ->limit(config('custom.related_posts_num'))->get();
     }
+
+    public function getPostByCategoryInCurrentYear($categoryId, $currentYear)
+    {
+        return $this->model->isApproved()->where('category_id', $categoryId)
+            ->whereYear('created_at', $currentYear)->get();
+    }
 }

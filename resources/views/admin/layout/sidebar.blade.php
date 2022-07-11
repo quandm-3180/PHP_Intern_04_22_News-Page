@@ -7,11 +7,17 @@
      -->
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="{{ url('/dashboard') }}" class="simple-text">
+            <a href="{{ route('admin.dashboard') }}" class="simple-text">
                 {{ __('News 365') }}
             </a>
         </div>
         <ul class="nav">
+            <li>
+                <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                    <i class="nc-icon nc-chart-bar-32"></i>
+                    <p>{{ __('Dashboard') }}</p>
+                </a>
+            </li>
             <li>
                 <a class="nav-link" href="{{ route('admin.post.index') }}">
                     <i class="nc-icon nc-paper-2"></i>
