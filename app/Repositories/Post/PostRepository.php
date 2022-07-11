@@ -40,4 +40,72 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
             ->orderBy('created_at', 'desc')
             ->limit(config('custom.post_hot_in_sidebar_num'))->get();
     }
+
+    public function getListofPopularPost()
+    {
+        return $this->model->with('images', 'category')->isApproved()->isPopular()->get();
+    }
+
+    public function getListOfRecentPosts()
+    {
+        return $this->model->with('images', 'category')->isApproved()->orderBy('created_at', 'desc')
+            ->limit(config('custom.recent_post_num'))->get();
+    }
+
+    public function getApprovedPostBySlug($postSlug)
+    {
+        return $this->model->isApproved()->where('slug', $postSlug)->first();
+    }
+
+    public function getRecentPostofFood()
+    {
+        return $this->model->with('images', 'category')
+            ->where('category_id', config('custom.category_text.food'))
+            ->isApproved()->orderBy('created_at', 'desc')
+            ->limit(config('custom.recent_post_by_category_num'))->get();
+    }
+
+    public function getRecentPostofFashion()
+    {
+        return $this->model->with('images', 'category')
+            ->where('category_id', config('custom.category_text.fashion'))
+            ->isApproved()->orderBy('created_at', 'desc')
+            ->limit(config('custom.recent_post_by_category_num'))->get();
+    }
+
+    public function getRecentPostofTravle()
+    {
+        return $this->model->with('images', 'category')
+            ->where('category_id', config('custom.category_text.travel'))
+            ->isApproved()->orderBy('created_at', 'desc')
+            ->limit(config('custom.recent_post_by_category_num'))->get();
+    }
+
+    public function getPostByCategory($categoryId)
+    {
+        return $this->model->where('category_id', $categoryId)->isApproved()
+            ->orderBy('created_at', 'desc')->paginate(config('custom.per_page'));
+    }
+
+    public function getListPostHotinSidebar()
+    {
+        return $this->model->with('images', 'category')->isApproved()
+            ->orderBy('created_at', 'desc')
+            ->limit(config('custom.post_hot_in_sidebar_num'))->get();
+    }
+
+    public function getListofSearchPost($keyword)
+    {
+        return $this->model->with('images', 'category')->where('name', 'like', "%$keyword%")
+            ->isApproved()->orderBy('created_at', 'desc')
+            ->paginate(config('custom.per_page'));
+    }
+
+    public function getListRelatedPosts($categoryId, $postId)
+    {
+        return $this->model->with('images', 'category')->where('category_id', $categoryId)
+            ->where('id', '!=', $postId)
+            ->isApproved()->orderByDesc('created_at')
+            ->limit(config('custom.related_posts_num'))->get();
+    }
 }

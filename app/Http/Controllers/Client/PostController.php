@@ -3,34 +3,34 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Comment;
-use App\Models\Post;
+use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Comment\CommentRepositoryInterface;
+use App\Repositories\Post\PostRepositoryInterface;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    protected $postRepo;
+    protected $categoryRepo;
+    protected $commentRepo;
+
+    public function __construct(
+        PostRepositoryInterface $postRepo,
+        CategoryRepositoryInterface $categoryRepo,
+        CommentRepositoryInterface $commentRepo
+    ) {
+        $this->postRepo = $postRepo;
+        $this->categoryRepo = $categoryRepo;
+        $this->commentRepo = $commentRepo;
+    }
     public function homepage()
     {
-        $categories = Category::isShow()->get();
-        $popularPosts = Post::with('images', 'category')->isApproved()->isPopular()->get();
-        $recentPosts = Post::with('images', 'category')->isApproved()->orderBy('created_at', 'desc')
-            ->limit(config('custom.recent_post_num'))->get();
-        $recentPostofTravle = Post::with('images', 'category')
-            ->where('category_id', config('custom.category_text.travel'))
-            ->isApproved()->orderBy('created_at', 'desc')
-            ->limit(config('custom.recent_post_by_category_num'))->get();
-
-        $recentPostofFood = Post::with('images', 'category')
-            ->where('category_id', config('custom.category_text.food'))
-            ->isApproved()->orderBy('created_at', 'desc')
-            ->limit(config('custom.recent_post_by_category_num'))->get();
-
-        $recentPostofFashion = Post::with('images', 'category')
-            ->where('category_id', config('custom.category_text.fashion'))
-            ->isApproved()->orderBy('created_at', 'desc')
-            ->limit(config('custom.recent_post_by_category_num'))->get();
-
+        $categories = $this->categoryRepo->getCategoryListStatusIsShow();
+        $popularPosts = $this->postRepo->getListOfPopularPost();
+        $recentPosts = $this->postRepo->getListOfRecentPosts();
+        $recentPostofTravle = $this->postRepo->getRecentPostofTravle();
+        $recentPostofFood = $this->postRepo->getRecentPostofFood();
+        $recentPostofFashion = $this->postRepo->getRecentPostofFashion();
         $postHotinSidebar = $this->listPostHotinSidebar();
 
         return view('client.home.index', compact(
@@ -46,8 +46,8 @@ class PostController extends Controller
 
     public function postDetails($categorySlug, $postSlug)
     {
-        $categories = Category::isShow()->get();
-        $post = Post::isApproved()->where('slug', $postSlug)->first();
+        $categories = $this->categoryRepo->getCategoryListStatusIsShow();
+        $post = $this->postRepo->getApprovedPostBySlug($postSlug);
         $postHotinSidebar = $this->listPostHotinSidebar();
         $relatedPosts = $this->listRelatedPosts($post->category_id, $post->id);
         $comments = $this->getCommentsinPost($post->id);
@@ -63,10 +63,9 @@ class PostController extends Controller
 
     public function getPostbyCategory($categorySlug)
     {
-        $categories = Category::isShow()->get();
-        $category = Category::where('slug', $categorySlug)->first();
-        $posts = Post::where('category_id', $category->id)->isApproved()
-            ->orderBy('created_at', 'desc')->paginate(config('custom.per_page'));
+        $categories = $this->categoryRepo->getCategoryListStatusIsShow();
+        $category = $this->categoryRepo->getCategoryBySlug($categorySlug);
+        $posts = $this->postRepo->getPostByCategory($category->id);
         $postHotinSidebar = $this->listPostHotinSidebar();
 
         return view('client.post.post-by-category', compact(
@@ -79,9 +78,7 @@ class PostController extends Controller
 
     public function listPostHotinSidebar()
     {
-        $postHotinSidebar = Post::with('images', 'category')->isApproved()
-            ->orderBy('created_at', 'desc')
-            ->limit(config('custom.post_hot_in_sidebar_num'))->get();
+        $postHotinSidebar = $this->postRepo->getListPostHotinSidebar();
 
         return $postHotinSidebar;
     }
@@ -89,10 +86,8 @@ class PostController extends Controller
     public function searchPost(Request $request)
     {
         $keyword = $request->q;
-        $listofSearchPost = Post::with('images', 'category')->where('name', 'like', "%$keyword%")
-            ->isApproved()->orderBy('created_at', 'desc')
-            ->paginate(config('custom.per_page'));
-        $categories = Category::isShow()->get();
+        $listofSearchPost = $this->postRepo->getListofSearchPost($keyword);
+        $categories = $this->categoryRepo->getCategoryListStatusIsShow();
         $postHotinSidebar = $this->listPostHotinSidebar();
 
         return view('client.post.search', compact('categories', 'listofSearchPost', 'keyword', 'postHotinSidebar'));
@@ -100,19 +95,14 @@ class PostController extends Controller
 
     public function listRelatedPosts($categoryId, $postId)
     {
-        $relatedPosts = Post::with('images', 'category')->where('category_id', $categoryId)
-            ->where('id', '!=', $postId)
-            ->isApproved()->orderByDesc('created_at')
-            ->limit(config('custom.related_posts_num'))->get();
+        $relatedPosts = $this->postRepo->getListRelatedPosts($categoryId, $postId);
 
         return $relatedPosts;
     }
 
     public function getCommentsinPost($postId)
     {
-        $comments = Comment::with('user')->where('post_id', $postId)
-            ->orderByDesc('created_at')
-            ->limit(config('custom.comment_in_post_num'))->get();
+        $comments = $this->commentRepo->getCommentsInPost($postId);
 
         return $comments;
     }
