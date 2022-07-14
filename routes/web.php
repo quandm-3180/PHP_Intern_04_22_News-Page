@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\PostController as ClientPostController;
@@ -47,6 +48,7 @@ Route::prefix('admin')
     ->name('admin.')
     ->middleware('check-admin')
     ->group(function () {
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('category', AdminCategoryController::class);
         Route::resource('post', AdminPostController::class);
         Route::get('/post/preview/{slug}', [AdminPostController::class, 'previewPost'])->name('post.preview');

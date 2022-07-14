@@ -35,4 +35,6 @@ interface PostRepositoryInterface extends RepositoryInterface
     public function getListofSearchPost($keyword);
 
     public function getListRelatedPosts($categoryId, $postId);
+
+    public function getPostByCategoryInCurrentYear($categoryId, $postId);
 }

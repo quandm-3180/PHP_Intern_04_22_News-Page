@@ -87,5 +87,6 @@
     "edit_success": "Sửa thành công",
     "edit_fail": "Sửa thất bại",
     "remove_success": "Xoá thành công",
-    "remove_fail": "Xoá thất bại"
+    "remove_fail": "Xoá thất bại",
+    "post-revenue-statistics-chart-in :year": "Biểu đồ thống kê bài viết trong năm :year"
 }
