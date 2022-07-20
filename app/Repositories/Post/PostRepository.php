@@ -4,6 +4,7 @@ namespace App\Repositories\Post;
 
 use App\Models\Post;
 use App\Repositories\BaseRepository;
+use Carbon\Carbon;
 
 class PostRepository extends BaseRepository implements PostRepositoryInterface
 {
@@ -113,5 +114,14 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
     {
         return $this->model->isApproved()->where('category_id', $categoryId)
             ->whereYear('created_at', $currentYear)->get();
+    }
+
+    public function getPostByWriterInCurrentWeer($userId)
+    {
+        $from = Carbon::now()->startOfWeek()->format('Y-m-d H:i');
+        $to = Carbon::now()->endOfWeek()->format('Y-m-d H:i');
+
+        return $this->model->where('user_id', $userId)
+            ->whereBetween('created_at', [$from, $to])->get();
     }
 }

@@ -23,4 +23,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         return $this->model->findOrFail($id);
     }
+
+    public function getWrites()
+    {
+        return $this->model->isWriter()->get();
+    }
 }

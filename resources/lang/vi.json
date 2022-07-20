@@ -88,5 +88,13 @@
     "edit_fail": "Sửa thất bại",
     "remove_success": "Xoá thành công",
     "remove_fail": "Xoá thất bại",
-    "post-revenue-statistics-chart-in :year": "Biểu đồ thống kê bài viết trong năm :year"
+    "post-statistics-chart-in :year": "Biểu đồ thống kê bài viết trong năm :year",
+    "Weekly report email": "Email báo cáo hằng tuần",
+    "hello": "Xin chào",
+    "You contributed :number posts in this week": "Bạn đã đóng góp :number bài viết trong tuần này",
+    "Author": "Tác giả",
+    "Atatus": "Trạng thái",
+    "Created_at": "Thời gian tạo",
+    "Thank you for your contribution": "Cảm ơn sự đóng góp của bạn",
+    "From :name": "Gửi từ :name"
 }

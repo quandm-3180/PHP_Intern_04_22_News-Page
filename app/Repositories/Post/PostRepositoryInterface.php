@@ -37,4 +37,6 @@ interface PostRepositoryInterface extends RepositoryInterface
     public function getListRelatedPosts($categoryId, $postId);
 
     public function getPostByCategoryInCurrentYear($categoryId, $postId);
+
+    public function getPostByWriterInCurrentWeer($userId);
 }

@@ -9,4 +9,6 @@ interface UserRepositoryInterface extends RepositoryInterface
     public function getUserList();
 
     public function getUser($id);
+
+    public function getWrites();
 }
