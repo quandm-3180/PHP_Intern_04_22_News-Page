@@ -87,5 +87,12 @@
     "edit_fail": "Edit fail",
     "remove_success": "Remove success",
     "remove_fail": "Remove fail",
-    "post-revenue-statistics-chart-in :year": "Post revenue statistics chart in :year"
+    "post-statistics-chart-in :year": "Post statistics chart in :year",
+    "Weekly report email": "Weekly report email",
+    "hello": "Hello",
+    "You contributed :number posts in this week": "You contributed :number posts in this week",
+    "Author": "Author",
+    "Created at": "Created at",
+    "Thank you for your contribution": "Thank you for your contribution",
+    "From :name": "From :name"
 }
