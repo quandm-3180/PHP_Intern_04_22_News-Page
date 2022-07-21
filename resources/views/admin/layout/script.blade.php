@@ -16,3 +16,7 @@ type="text/javascript"></script>
 <script
 src="{{ asset('bower_components/light-bootstrap-dashboard/assets/js/light-bootstrap-dashboard.js?v=2.0.0') }} "
 type="text/javascript"></script>
+<script>
+    window.translations = {!! $translation !!}
+    window.user = {{ Auth::id() }};
+</script>

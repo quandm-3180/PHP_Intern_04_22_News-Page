@@ -22,7 +22,8 @@ mix.js('resources/js/changepoststatus.js', 'public/js');
 mix.js('resources/js/change-user-status.js', 'public/js');
 mix.js('resources/js/custom-client.js', 'public/js');
 mix.js('resources/js/confirm-remove.js', 'public/js');
-mix.js('resources/js/dashboard-statistics.js', 'public/js');
+mix.js('resources/js/dashboard-statistics.js', 'public/js')
+    .js('resources/js/helper.js', 'public/js');
 
 mix.copy("resources/i18n/en.json", "public/i18n/en.json")
     .copy("resources/i18n/vi.json", "public/i18n/vi.json")
