@@ -58,4 +58,6 @@ Route::prefix('admin')
         Route::get('user', [UserController::class, 'index'])->name('user.index');
         Route::post('user/change-status/{id}/{userStatus}', [UserController::class, 'changeUserStatus'])
             ->name('user.change-status');
+        Route::get('/notification/make-all-as-read', [AdminPostController::class, 'makeAllAsRead'])
+            ->name('makeAllAsRead');
     });

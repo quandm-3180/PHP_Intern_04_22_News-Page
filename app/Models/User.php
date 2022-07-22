@@ -91,4 +91,9 @@ class User extends Authenticatable
 
         return $userStatus;
     }
+
+    public function getUnreadNotificationAttribute()
+    {
+        return $this->Notifications->whereNull('read_at')->count();
+    }
 }

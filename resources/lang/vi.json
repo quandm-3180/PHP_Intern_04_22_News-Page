@@ -96,5 +96,9 @@
     "Atatus": "Trạng thái",
     "Created_at": "Thời gian tạo",
     "Thank you for your contribution": "Cảm ơn sự đóng góp của bạn",
-    "From :name": "Gửi từ :name"
+    "From :name": "Gửi từ :name",
+    "your-post :title has-been-changed-to :status": "Bài viết <b>:title</b> của bạn đã được chuyển trạng thái thành <b>:status</b>",
+    "notifications": "Thông báo",
+    "view_all": "Xem tất cả",
+    "mark_all_as_read": "Đánh dấu tất cả là đã đọc"
 }
