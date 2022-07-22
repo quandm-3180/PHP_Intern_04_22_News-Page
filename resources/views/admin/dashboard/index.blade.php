@@ -12,7 +12,7 @@
                     <h4 class="card-title">{{ __('Dashboard') }}</h4>
                 </div>
                 <div class="card-body">
-                    <h5>{{ __('post-revenue-statistics-chart-in :year', ['year' => $currentYear]) }}</h5>
+                    <h5>{{ __('post-statistics-chart-in :year', ['year' => $currentYear]) }}</h5>
                     <canvas id="chartStatisticsPost" category-name={{ $categoryName }}
                         count-posts-in-month={{ $countPostsInMonth }}></canvas>
                 </div>

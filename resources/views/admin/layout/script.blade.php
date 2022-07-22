@@ -20,3 +20,4 @@ type="text/javascript"></script>
     window.translations = {!! $translation !!}
     window.user = {{ Auth::id() }};
 </script>
+<script src="{{ asset('js/notification.js') }}"></script>

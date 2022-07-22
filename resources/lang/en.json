@@ -94,5 +94,9 @@
     "Author": "Author",
     "Created at": "Created at",
     "Thank you for your contribution": "Thank you for your contribution",
-    "From :name": "From :name"
+    "From :name": "From :name",
+    "your-post :title has-been-changed-to :status": "Your post <b>:title</b> has been changed to <b>:status</b>",
+    "notifications": "Notifications",
+    "view_all": "View all",
+    "mark_all_as_read": "Mark all as read"
 }

@@ -16,14 +16,17 @@ mix.js('resources/js/app.js', 'public/js')
     .sourceMaps();
 
 mix.sass('resources/sass/custom-admin.scss', 'public/css');
-mix.sass('resources/sass/custom.scss', 'public/css');
+mix.sass('resources/sass/custom.scss', 'public/css')
+    .sass('resources/sass/custom-notification.scss', 'public/css');
+
 mix.js('resources/js/summernote.js', 'public/js');
 mix.js('resources/js/changepoststatus.js', 'public/js');
 mix.js('resources/js/change-user-status.js', 'public/js');
 mix.js('resources/js/custom-client.js', 'public/js');
 mix.js('resources/js/confirm-remove.js', 'public/js');
 mix.js('resources/js/dashboard-statistics.js', 'public/js')
-    .js('resources/js/helper.js', 'public/js');
+    .js('resources/js/helper.js', 'public/js')
+    .js('resources/js/notification.js', 'public/js');
 
 mix.copy("resources/i18n/en.json", "public/i18n/en.json")
     .copy("resources/i18n/vi.json", "public/i18n/vi.json")

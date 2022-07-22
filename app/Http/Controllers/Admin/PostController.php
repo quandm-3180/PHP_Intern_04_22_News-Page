@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\PostStatusChangesNotificationEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\StoreRequest;
 use App\Http\Requests\Post\UpdateRequest;
+use App\Notifications\PostNotification;
 use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Repositories\Image\ImageRepositoryInterface;
 use App\Repositories\Post\PostRepositoryInterface;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -171,9 +175,33 @@ class PostController extends Controller
             ]);
         }
 
+        $urlPost = '';
+
+        if ($postStatus == config('custom.post_status.approved')) {
+            $urlPost = route('client.post-details', [
+                'categorySlug' => $post->category->slug,
+                'postSlug' => $post->slug,
+            ]);
+        }
+
+        $data = [
+            'message' => __('your-post :title has-been-changed-to :status', [
+                'title' => $post->name,
+                'status' => $post->status,
+            ]),
+            'urlPost' => $urlPost,
+            'created_at' => Carbon::now()->toDateTimeString(),
+        ];
+
+        $author = $post->user;
+        $author->notify(new PostNotification($data));
+        $notification_id = $author->notifications->first()->id;
+        $data['notification_id'] = $notification_id;
+        event(new PostStatusChangesNotificationEvent($data, $author->id));
+
         return response()->json([
             'code' => 200,
-            'message' => __('messages.update-success')
+            'message' => __('messages.update-success'),
         ]);
     }
 
@@ -184,5 +212,16 @@ class PostController extends Controller
         $postHotinSidebar = $this->postRepo->getPostStatusApprovedList();
 
         return view('client.post.post-details', compact('categories', 'post', 'postHotinSidebar'));
+    }
+
+    public function makeAllAsRead()
+    {
+        try {
+            Auth::user()->Notifications->markAsRead();
+        } catch (\Throwable  $th) {
+            return response()->json(['message' => $th], 400);
+        }
+
+        return response()->json(['message' => 'success'], 200);
     }
 }

@@ -21,6 +21,42 @@
                         <span class="d-lg-block">&nbsp;{{ __('Search') }}</span>
                     </a>
                 </li>
+                <li class="nav-item dropdown dropdown-notifications">
+                    <a id="item-notifi" href="#notifications-panel" class="nav-link dropdown-toggle"
+                        data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-bell nc-icon nc-bell-55"></i>
+                        <i data-count="{{ Auth::user()->unreadNotification }}"
+                            class="notification">{{ Auth::user()->unreadNotification }}</i>
+                    </a>
+                    <div class="dropdown-container">
+                        <div class="dropdown-toolbar">
+                            <div class="dropdown-toolbar-actions">
+                                <a href="{{ route('admin.makeAllAsRead') }}"
+                                    id="allRead">{{ __('mark_all_as_read') }}</a>
+                            </div>
+                            <h3 class="dropdown-toolbar-title">{{ __('notifications') }} (<span
+                                    class="notif-count">{{ Auth::user()->unreadNotification }}</span>)</h3>
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu2">
+                            @foreach (Auth::user()->notifications as $noti)
+                                <li class="notification2 {{ $noti->read_at ? '' : 'unchecked' }}">
+                                    <a href="{{ $noti->data['urlPost'] }}?idnotify={{ $noti->id }}"
+                                        data-id="{{ $noti->id }}" target="_blank">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <p>{!! $noti->data['message'] !!}</p>
+                                                <small class="timestamp">{{ $noti->data['created_at'] }}</small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <div class="dropdown-footer text-center">
+                            <a href="#">{{ __('view_all') }}</a>
+                        </div>
+                    </div>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item m-auto">
@@ -35,8 +71,7 @@
                         <i class="fa fa-caret-down"> </i>
                     </a>
                     <ul class="dropdown-menu">
-                        <a class="dropdown-item"
-                            href="{{ route('change-language', ['en']) }}">{{ __('English') }}</a>
+                        <a class="dropdown-item" href="{{ route('change-language', ['en']) }}">{{ __('English') }}</a>
                         <a class="dropdown-item"
                             href="{{ route('change-language', ['vi']) }}">{{ __('Tiếng Việt') }}</a>
                     </ul>

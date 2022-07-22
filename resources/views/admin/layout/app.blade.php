@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{ asset('bower_components/summernote/dist/summernote-bs4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bower_components/toastr/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom-admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom-notification.css') }}">
 </head>
 
 <body>
