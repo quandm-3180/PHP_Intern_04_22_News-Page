@@ -28,4 +28,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         return $this->model->isWriter()->get();
     }
+
+    public function getUsers()
+    {
+        return $this->model->where('role_id', config('custom.user_roles.user'))->get();
+    }
 }
