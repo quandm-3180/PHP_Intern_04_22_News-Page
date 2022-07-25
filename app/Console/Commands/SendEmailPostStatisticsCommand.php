@@ -55,5 +55,7 @@ class SendEmailPostStatisticsCommand extends Command
             $mail = new PostStatisticsMail($writer, $posts);
             Mail::to($writer->email)->queue($mail);
         }
+
+        return true;
     }
 }
