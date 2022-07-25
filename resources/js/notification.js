@@ -49,22 +49,15 @@ $(document).ready(function () {
             type: "GET",
             url: url,
             success: function () {
-                notificationsCountElem.text('0');
-                notificationsWrapper.find('.notif-count').text('0');
+                notificationsCount = 0;
+                notificationsCountElem.attr('data-count', 0);
+                notificationsCountElem.text(0);
+                notificationsWrapper.find('.notif-count').text(0);
                 $('.dropdown-menu2 li').each(function () {
                     $(this).removeClass('unchecked');
                 });
             }
         });
-    });
-
-    $(document).on('click', '.notification2', function (e) {
-        $(this).closest('li').removeClass('unchecked');
-
-        notificationsCount--;
-        notificationsCountElem.attr('data-count', notificationsCount);
-        notificationsCountElem.text(notificationsCount);
-        notificationsWrapper.find('.notif-count').text(notificationsCount);
     });
 
     $(document).on('click', '.notification2', function (e) {
