@@ -42,15 +42,9 @@ class SendEmailPostStatisticsCommandTest extends TestCase
         Mail::fake();
         $users = User::factory()->count(10)->make();
         $this->userRepo->shouldReceive('getWrites')->andReturn($users);
-        $this->postRepo->shouldReceiVe('getPostByWriterInCurrentWeer')->andReturn();
+        $this->postRepo->shouldReceiVe('getPostByWriterInCurrentWeek')->andReturn();
         $response = $this->command->handle($this->userRepo, $this->postRepo);
         $this->assertTrue($response);
-    }
-
-    public function testSentMailQueued()
-    {
-        Mail::fake();
-        Mail::send($this->mail);
-        Mail::assertQueued(PostStatisticsMail::class);
+        Mail::assertQueued(PostStatisticsMail::class, 10);
     }
 }
