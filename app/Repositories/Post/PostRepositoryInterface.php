@@ -38,5 +38,5 @@ interface PostRepositoryInterface extends RepositoryInterface
 
     public function getPostByCategoryInCurrentYear($categoryId, $postId);
 
-    public function getPostByWriterInCurrentWeer($userId);
+    public function getPostByWriterInCurrentWeek($userId);
 }

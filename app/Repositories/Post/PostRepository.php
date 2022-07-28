@@ -116,7 +116,7 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
             ->whereYear('created_at', $currentYear)->get();
     }
 
-    public function getPostByWriterInCurrentWeer($userId)
+    public function getPostByWriterInCurrentWeek($userId)
     {
         $from = Carbon::now()->startOfWeek()->format('Y-m-d H:i');
         $to = Carbon::now()->endOfWeek()->format('Y-m-d H:i');

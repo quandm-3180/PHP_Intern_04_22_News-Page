@@ -51,7 +51,7 @@ class SendEmailPostStatisticsCommand extends Command
         $writers = $this->userRepo->getWrites();
 
         foreach ($writers as $writer) {
-            $posts = $this->postRepo->getPostByWriterInCurrentWeer($writer->id);
+            $posts = $this->postRepo->getPostByWriterInCurrentWeek($writer->id);
             $mail = new PostStatisticsMail($writer, $posts);
             Mail::to($writer->email)->queue($mail);
         }
