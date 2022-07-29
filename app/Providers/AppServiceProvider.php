@@ -13,7 +13,8 @@ use App\Repositories\Post\PostRepositoryInterface;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL;
+// use Illuminate\Support\Facades\URL;
+use URL;
 
 class AppServiceProvider extends ServiceProvider
 {
