@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Models\Role;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('login', [AuthController::class, 'login'])->name('api.login');
+Route::post('register', [RegisterController::class, 'register'])->name('register');
 
 Route::middleware('auth:api')->name('api.')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');

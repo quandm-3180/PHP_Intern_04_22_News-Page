@@ -33,4 +33,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         return $this->model->where('role_id', config('custom.user_roles.user'))->get();
     }
+
+    public function createUser($option)
+    {
+        return $this->model->insert($option);
+    }
 }
