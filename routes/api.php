@@ -27,5 +27,5 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
 
 Route::middleware('auth:api')->name('api.')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-    Route::resource('category', CategoryController::class)->middleware('api.check-admin');
+    Route::resource('categories', CategoryController::class)->middleware('api.check-admin');
 });
