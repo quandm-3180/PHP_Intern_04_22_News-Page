@@ -13,4 +13,6 @@ interface UserRepositoryInterface extends RepositoryInterface
     public function getWrites();
 
     public function getUsers();
+
+    public function createUser($option);
 }
