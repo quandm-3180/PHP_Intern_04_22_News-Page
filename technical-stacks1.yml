@@ -1,0 +1,46 @@
+techstack:
+  application:
+    - laravel:9.52.15
+    - php:8.0.2
+    - typescript
+    - nuxt:3.5.1
+    - nginx:1.21.6
+    - sass:1.55.0
+    - redis:7.0.4
+    - beanstalkd
+    - npm
+  database:
+    - postgresql
+  devops:
+    - kubernetes
+    - fluxcd
+    - docker
+    - git
+    - helm
+    - harbor
+  business_tools:
+    - slack
+    - figma
+    - google-drive
+    - jira
+    - zoom
+    - sendgrid
+  utilities:
+    - elasticsearch:8.11.1
+    - metabase
+    - prettier:2.8.8
+    - eslint
+    - phpstorm
+    - google-analytics
+  cloud:
+    aws:
+      - aws-ec2-container-service
+      - aws-elastic-beanstalk
+      - aws-elastic-compute-cloud
+      - aws-elastic-kubernetes-service
+      - aws-elastic-load-balancing
+      - aws-elasticache
+      - aws-lambda
+      - aws-rds
+    firebase: []
+    tencent-cloud: []
