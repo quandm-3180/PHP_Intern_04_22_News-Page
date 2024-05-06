@@ -876,7 +876,7 @@
             "time": "2022-03-20T21:55:58+00:00"
         },
         {
-            "name": "laravel/framework",
+            "name": "laravel/framework/yen",
             "version": "v8.83.15",
             "source": {
                 "type": "git",
